@@ -3,7 +3,7 @@
 //
 
 #pragma once
-
+#include "Clientsocket.h"
 
 // CRemoteClientDlg 对话框
 class CRemoteClientDlg : public CDialogEx
