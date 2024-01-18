@@ -1,7 +1,6 @@
 ﻿// RemoteCtrl.cpp : 此文件包含 "main" 函数。程序执行将在此处开始并结束。
 //
 
-
 #include "pch.h"
 #include "framework.h"
 #include "RemoteCtrl.h"
@@ -285,13 +284,64 @@ int SendScreen() {
     return 0;
 }
 
-int LockMachine() {
+#include "LockInfoDialog.h"
+CLockInfoDialog dlg;
+unsigned threadid = 0;
 
+unsigned __stdcall threadLockDlg(void* arg) {
+    dlg.Create(IDD_DIALOG_INFO, NULL);
+    dlg.ShowWindow(SW_SHOW);
+    // 遮蔽后台窗口    
+    CRect rect;
+    rect.left = 0;
+    rect.top = 0;
+    rect.right = GetSystemMetrics(SM_CXFULLSCREEN);
+    rect.bottom = GetSystemMetrics(SM_CYFULLSCREEN);
+    rect.bottom *= 1.025;
+    dlg.MoveWindow(rect);
+    // 窗口置顶
+    dlg.SetWindowPos(&dlg.wndTopMost, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+    // 限制鼠标功能
+    ShowCursor(false);
+    // 隐藏任务栏
+    ::ShowWindow(::FindWindow(_T("Shell_TrayWnd"), NULL), SW_HIDE);
+    // dlg.GetWindowRect(rect);
+    rect.left = 0;
+    rect.top = 0;
+    rect.right = 1;
+    rect.bottom = 1;
+    // 限制鼠标活动范围
+    ClipCursor(rect);
+    MSG msg;
+    while (GetMessage(&msg, NULL, 0, 0)) {
+        TranslateMessage(&msg);
+        DispatchMessage(&msg);
+        if (msg.message == WM_KEYDOWN) {
+            if (msg.wParam == 0x41) // 按下esc来退出
+                break;
+        }
+    }
+    ::ShowWindow(::FindWindow(_T("Shell_TrayWnd"), NULL), SW_SHOW);
+    ShowCursor(true);
+    dlg.DestroyWindow();
+    _endthreadex(0);
+    return 0;
+}
+
+int LockMachine() {
+    if (dlg.m_hWnd == NULL || dlg.m_hWnd == INVALID_HANDLE_VALUE) {
+        //_beginthread(threadLockDlg, 0, NULL);
+        _beginthreadex(NULL, 0, threadLockDlg, NULL, 0, &threadid);
+    }
+    CPacket pack(7, NULL, 0);
+    CServerSocket::getInstance()->Send(pack);
     return 0;
 }
 
 int UnlockMachine() {
-    
+    PostThreadMessage(threadid, WM_KEYDOWN, 0x41, 0);
+    CPacket pack(7, NULL, 0);
+    CServerSocket::getInstance()->Send(pack);
     return 0;
 }
 
@@ -331,7 +381,9 @@ int main()
             //    int ret = perver->DealCommand();
             //}
             //// TODO
-            int nCmd = 6;
+
+
+            int nCmd = 7;
             switch (nCmd) {
             case1: // 查看磁盘分区
                 MakeDiverInfo();
@@ -351,12 +403,18 @@ int main()
             case 6: // 发送屏幕内容 --> 发送屏幕的截图
                 SendScreen();
                 break;
-            case 7:
+            case 7: // 锁机
                 LockMachine();
                 break;
-            case 8:
+            case 8: // 解锁
                 UnlockMachine();
                 break;
+            }
+            Sleep(5000);
+            UnlockMachine();
+
+            while (dlg.m_hWnd != NULL) {
+                Sleep(10);
             }
         }
     }
