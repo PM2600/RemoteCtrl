@@ -160,9 +160,11 @@ public:
 	}
 
 	bool AcceptClient() {
+		TRACE("enter AcceptClient\r\n");
 		SOCKADDR_IN cli_adr;
 		int cli_sz = sizeof(cli_adr);
 		m_client = accept(m_server, (SOCKADDR*)&cli_adr, &cli_sz);
+		TRACE("m_client = %d\r\n", m_client);
 		if (m_client == -1) {
 			printf("socket error\n");
 			return false;
@@ -174,21 +176,23 @@ public:
 	int DealCommand() {
 		if (m_client == -1)
 			return -1;
-		// char buffer[1024] = "";
 		char* buffer = new char[BUFFER_SIZE];
 		memset(buffer, 0, BUFFER_SIZE);
 		size_t index = 0;
 		while (1) {
 			size_t len = recv(m_client, buffer + index, BUFFER_SIZE - index, 0);
+			TRACE("recv %d\r\n", len);
 			if (len <= 0) {
 				return -1;
 			}
+			
 			index += len;
 			len = index; // ???
 			m_packet = CPacket((BYTE*)buffer, len);
 			if (len > 0) {
 				memmove(buffer, buffer + len, BUFFER_SIZE - len);
 				index -= len;
+				TRACE("here\r\n");
 				return m_packet.sCmd;
 			}
 		}
@@ -219,7 +223,13 @@ public:
 		}
 		return false;
 	}
-
+	CPacket& GetPacket() {
+		return m_packet;
+	}
+	void CloseClient() {
+		closesocket(m_client);
+		m_client = INVALID_SOCKET;
+	}
 
 private:
 	SOCKET m_server;
