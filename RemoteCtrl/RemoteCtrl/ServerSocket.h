@@ -34,6 +34,7 @@ public:
 		strData = pack.strData;
 		sSum = pack.sSum;
 	}
+
 	CPacket(const BYTE* pData, size_t& nSize){
 		size_t i = 0;
 		for (; i < nSize; i++) {
@@ -44,7 +45,7 @@ public:
 			}
 		}
 		// 包数据可能不全，或者包头未能全部接收到
-		if (i + 4 + 2 + 2 >= nSize) {
+		if (i + 4 + 2 + 2 > nSize) {
 			nSize = 0;
 			return;
 		}
@@ -74,6 +75,7 @@ public:
 		}
 		nSize = 0;
 	}
+
 	~CPacket() {}
 	CPacket& operator=(const CPacket& pack) {
 		if (this != &pack) {
@@ -177,25 +179,32 @@ public:
 		if (m_client == -1)
 			return -1;
 		char* buffer = new char[BUFFER_SIZE];
+		if (buffer == NULL) {
+			TRACE("内存不足\r\n");
+			return -2;
+		}
 		memset(buffer, 0, BUFFER_SIZE);
 		size_t index = 0;
 		while (1) {
 			size_t len = recv(m_client, buffer + index, BUFFER_SIZE - index, 0);
-			TRACE("recv %d\r\n", len);
 			if (len <= 0) {
+				delete[] buffer;
 				return -1;
 			}
-			
+			TRACE("recv %d\r\n", len);
 			index += len;
-			len = index; // ???
+			len = index; // ??? 
 			m_packet = CPacket((BYTE*)buffer, len);
+			TRACE("len=%d\r\n", len);
 			if (len > 0) {
 				memmove(buffer, buffer + len, BUFFER_SIZE - len);
 				index -= len;
+				delete[] buffer;
 				TRACE("here\r\n");
 				return m_packet.sCmd;
 			}
 		}
+		delete[] buffer;
 		return -1;
 	}
 

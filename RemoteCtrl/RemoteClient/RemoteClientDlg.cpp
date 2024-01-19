@@ -168,7 +168,7 @@ void CRemoteClientDlg::OnBnClickedBtnTest()
 
 	CPacket pack(1981, NULL, 0);
 	pClient->Send(pack);
-	TRACE("client send 1981\r\n");
+	//TRACE("client send 1981\r\n");
 	int cmd = pClient->DealCommand();
 	TRACE("ack: %d\r\n", cmd);
 	pClient->CloseSocket();

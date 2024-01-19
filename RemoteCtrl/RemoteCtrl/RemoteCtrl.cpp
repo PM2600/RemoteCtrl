@@ -345,7 +345,7 @@ int UnlockMachine() {
 }
 
 int TestConnect() {
-    TRACE("creat 1981pack\r\n");
+    //TRACE("creat 1981pack\r\n");
     CPacket pack(1981, NULL, 0);
     CServerSocket::getInstance()->Send(pack);
     return 0;
@@ -420,7 +420,7 @@ int main()
                 }
                 TRACE("Accept return true\r\n");
                 int ret = pserver->DealCommand();
-                TRACE("DealCommand ret %d\r\n", ret);
+                TRACE("DealCommand ret=%d\r\n", ret);
                 if (ret > 0) {
                     ret = ExcuteCommand(ret);
                     if (ret != 0) {
