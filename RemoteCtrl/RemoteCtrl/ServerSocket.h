@@ -146,7 +146,7 @@ public:
 		SOCKADDR_IN serv_adr;
 		memset(&serv_adr, 0, sizeof(serv_adr));
 		serv_adr.sin_family = AF_INET;
-		serv_adr.sin_port = htons(8888);
+		serv_adr.sin_port = htons(9527);
 		serv_adr.sin_addr.s_addr = INADDR_ANY;
 
 		if (bind(m_server, (SOCKADDR*)&serv_adr, sizeof(serv_adr)) == -1) {

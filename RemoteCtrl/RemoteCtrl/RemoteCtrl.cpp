@@ -37,7 +37,7 @@ void Dump(BYTE* pData, size_t nSize) {
 
 int MakeDiverInfo() {
     std::string result;
-    for (int i = 1; i < 26; i++) {
+    for (int i = 1; i <= 26; i++) {
         if (_chdrive(i) == 0) {
             if (result.size() > 0) {
                 result += ',';
@@ -45,9 +45,10 @@ int MakeDiverInfo() {
             result += 'A' + i - 1;
         }
     }
+    result += ',';
     CPacket pack(1, (BYTE*)result.c_str(), result.size());
     Dump((BYTE*)pack.Data(), pack.Size());
-    //CServerSocket::getInstance()->Send(pack);
+    CServerSocket::getInstance()->Send(pack);
     return 0;
 }
 
@@ -354,7 +355,7 @@ int TestConnect() {
 int ExcuteCommand(int nCmd) {
     int ret = 0;
     switch (nCmd) {
-    case1: // 查看磁盘分区
+    case 1: // 查看磁盘分区
         ret = MakeDiverInfo();
         break;
     case 2: // 查看指定目录下的文件

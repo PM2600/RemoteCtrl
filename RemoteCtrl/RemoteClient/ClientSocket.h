@@ -3,6 +3,7 @@
 #include "pch.h"
 #include "framework.h"
 #include <string>
+#include <iostream>
 #include <vector>
 
 #pragma pack(push)
@@ -140,7 +141,8 @@ public:
 		return m_instance;
 	}
 
-	bool InitSocket(const std::string& strIPAddress) {
+	bool InitSocket(int nIP, int nPort) {
+		//TRACE("nIP=%08x\r\n", nIP);
 		if (m_sock != INVALID_SOCKET)
 			CloseSocket();
 		m_sock = socket(PF_INET, SOCK_STREAM, 0);
@@ -152,8 +154,8 @@ public:
 		SOCKADDR_IN serv_adr;
 		memset(&serv_adr, 0, sizeof(serv_adr));
 		serv_adr.sin_family = AF_INET;
-		serv_adr.sin_port = htons(8888);
-		serv_adr.sin_addr.s_addr = inet_addr(strIPAddress.c_str());
+		serv_adr.sin_port = htons(9527);
+		serv_adr.sin_addr.s_addr = htonl(nIP);
 		if (serv_adr.sin_addr.s_addr == INADDR_NONE) {
 			AfxMessageBox("指定的ip地址不存在");
 			return false;
@@ -178,14 +180,14 @@ public:
 		size_t index = 0;
 		while (1) {
 			size_t len = recv(m_sock, buffer + index, BUFFER_SIZE - index, 0);
-			
+			TRACE("len=%d\r\n", len);
 			if (len <= 0) {
 				return -1;
 			}
 			index += len;
 			len = index; // ???
 			m_packet = CPacket((BYTE*)buffer, len);
-			TRACE("len=%d\r\n", len);
+
 			if (len > 0) {
 				memmove(buffer, buffer + len, BUFFER_SIZE - len);
 				index -= len;
