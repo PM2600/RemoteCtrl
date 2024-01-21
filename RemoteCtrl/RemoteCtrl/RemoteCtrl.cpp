@@ -52,18 +52,7 @@ int MakeDiverInfo() {
     return 0;
 }
 
-typedef struct file_info{
-    file_info() {
-        IsInvalid = FALSE;
-        IsDirectory = -1;
-        HasNext = TRUE;
-        memset(szFileName, 0, sizeof(szFileName));
-    }
-    BOOL IsInvalid; // 是否有效
-    BOOL IsDirectory; // 0目录，1文件
-    BOOL HasNext; // 是否还有后续 0没有，1有
-    char szFileName[256]; // 文件名 
-}FILEINFO, *PFILEINFO;
+
 
 int MakeDirectoryInfo() {
     std::string strPath;
@@ -74,13 +63,9 @@ int MakeDirectoryInfo() {
     }
     if (_chdir(strPath.c_str()) != 0) {
         FILEINFO finfo;
-        finfo.IsInvalid = TRUE;
-        finfo.IsDirectory = TRUE;
         finfo.HasNext = FALSE;
-        memcpy(finfo.szFileName, strPath.c_str(), strPath.size());
         CPacket pack(2, (BYTE*)& finfo, sizeof(finfo));
         CServerSocket::getInstance()->Send(pack);
-        //listFileInfos.push_back(finfo);
         OutputDebugString(_T("没有权限访问目录"));
         return -2;
     }
@@ -88,16 +73,19 @@ int MakeDirectoryInfo() {
     int hfind = 0;
     if ((hfind = _findfirst("*", &fdata)) == -1) {
         OutputDebugString(_T("没有找到任何文件"));
+        FILEINFO finfo;
+        finfo.HasNext = FALSE;
+        CPacket pack(2, (BYTE*)&finfo, sizeof(finfo));
+        CServerSocket::getInstance()->Send(pack);
         return -3;
     }
 
     do {
         FILEINFO finfo;
-        memcpy(finfo.szFileName, fdata.name, strlen(fdata.name));
         finfo.IsDirectory = (fdata.attrib & _A_SUBDIR) != 0;
+        memcpy(finfo.szFileName, fdata.name, strlen(fdata.name));
         CPacket pack(2, (BYTE*)&finfo, sizeof(finfo));
         CServerSocket::getInstance()->Send(pack);
-        //listFileInfos.push_back(finfo);
     } while (!_findnext(hfind, &fdata));
     
     FILEINFO finfo;
@@ -297,7 +285,7 @@ unsigned __stdcall threadLockDlg(void* arg) {
     rect.top = 0;
     rect.right = GetSystemMetrics(SM_CXFULLSCREEN);
     rect.bottom = GetSystemMetrics(SM_CYFULLSCREEN);
-    rect.bottom *= 1.025;
+    rect.bottom = LONG(rect.bottom * 1.025);
     dlg.MoveWindow(rect);
     // 窗口置顶
     dlg.SetWindowPos(&dlg.wndTopMost, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
