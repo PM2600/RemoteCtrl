@@ -121,6 +121,7 @@ int DownLoadFile() {
         fseek(pFile, 0, SEEK_END);
         data = _ftelli64(pFile);
         CPacket head(4, (BYTE*)&data, 8);
+        CServerSocket::getInstance()->Send(head);
         fseek(pFile, 0, SEEK_SET);
         char buffer[1024] = "";
         size_t rlen = 0;
