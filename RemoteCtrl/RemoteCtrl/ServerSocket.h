@@ -197,7 +197,7 @@ public:
 			return -2;
 		}
 		memset(buffer, 0, BUFFER_SIZE);
-		size_t index = 0;
+		static size_t index = 0;
 		while (1) {
 			size_t len = recv(m_client, buffer + index, BUFFER_SIZE - index, 0);
 			if (len <= 0) {
@@ -229,7 +229,7 @@ public:
 	bool Send(CPacket& pack) {
 		if (m_client == -1)
 			return false;
-		Dump((BYTE*)pack.Data(), pack.Size());
+		//Dump((BYTE*)pack.Data(), pack.Size());
 		return send(m_client, pack.Data(), pack.Size(), 0) > 0;
 	}
 	bool GetFilePath(std::string& strPath) {

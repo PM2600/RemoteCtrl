@@ -9,6 +9,7 @@
 #define IDR_MAINFRAME                   128
 #define IDR_MENU1                       129
 #define IDR_MENU_RCLICK                 129
+#define IDD_DLG_STATUS                  130
 #define IDC_BUTTON1                     1000
 #define IDC_BTN_TEST                    1000
 #define IDC_EDIT_PORT                   1001
@@ -17,6 +18,8 @@
 #define IDC_LIST_FILE                   1007
 #define IDC_BTN_FILEINFO                1010
 #define IDC_BUTTON7                     1013
+#define IDC_EDIT1                       1014
+#define IDC_EDIT_INFO                   1014
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_32773                        32773
@@ -28,9 +31,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        130
+#define _APS_NEXT_RESOURCE_VALUE        132
 #define _APS_NEXT_COMMAND_VALUE         32777
-#define _APS_NEXT_CONTROL_VALUE         1014
+#define _APS_NEXT_CONTROL_VALUE         1015
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

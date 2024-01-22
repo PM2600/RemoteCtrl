@@ -79,15 +79,16 @@ int MakeDirectoryInfo() {
         CServerSocket::getInstance()->Send(pack);
         return -3;
     }
-
+    int count = 0;
     do {
         FILEINFO finfo;
         finfo.IsDirectory = (fdata.attrib & _A_SUBDIR) != 0;
         memcpy(finfo.szFileName, fdata.name, strlen(fdata.name));
         CPacket pack(2, (BYTE*)&finfo, sizeof(finfo));
         CServerSocket::getInstance()->Send(pack);
+        count++;
     } while (!_findnext(hfind, &fdata));
-    
+    TRACE("server: count=%d\r\n", count);
     FILEINFO finfo;
     finfo.HasNext = FALSE;
     CPacket pack(2, (BYTE*)&finfo, sizeof(finfo));

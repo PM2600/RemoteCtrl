@@ -189,18 +189,16 @@ public:
 		if (m_sock == -1)
 			return -1;
 		char* buffer = m_buffer.data();
-		memset(buffer, 0, BUFFER_SIZE);
-		size_t index = 0;
+		static size_t index = 0;
 		while (1) {
 			size_t len = recv(m_sock, buffer + index, BUFFER_SIZE - index, 0);
 			TRACE("len=%d\r\n", len);
-			if (len <= 0) {
+			if (len <= 0 && index <= 0) {
 				return -1;
 			}
 			index += len;
 			len = index; // ???
 			m_packet = CPacket((BYTE*)buffer, len);
-
 			if (len > 0) {
 				memmove(buffer, buffer + len, BUFFER_SIZE - len);
 				index -= len;
@@ -260,6 +258,7 @@ private:
 			exit(0);
 		}
 		m_buffer.resize(BUFFER_SIZE);
+		memset(m_buffer.data(), 0, BUFFER_SIZE);
 	}
 
 	~CClientSocket() {
