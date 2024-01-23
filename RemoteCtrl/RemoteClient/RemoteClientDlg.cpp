@@ -99,6 +99,7 @@ BEGIN_MESSAGE_MAP(CRemoteClientDlg, CDialogEx)
 	ON_COMMAND(ID_DELETE_FILE, &CRemoteClientDlg::OnDeleteFile)
 	ON_COMMAND(ID_RUN_FILE, &CRemoteClientDlg::OnRunFile)
 	ON_MESSAGE(WM_SEND_PACKET, &CRemoteClientDlg::OnSendPacket)
+	ON_BN_CLICKED(IDC_BTN_START_WATCH, &CRemoteClientDlg::OnBnClickedBtnStartWatch)
 END_MESSAGE_MAP()
 
 
@@ -140,6 +141,7 @@ BOOL CRemoteClientDlg::OnInitDialog()
 	UpdateData(FALSE);
 	m_dlgStatus.Create(IDD_DLG_STATUS, this);
 	m_dlgStatus.ShowWindow(SW_HIDE);
+	m_isFull = false;
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -220,6 +222,52 @@ void CRemoteClientDlg::OnBnClickedBtnFileinfo()
 			continue;
 		}
 		dr += drivers[i];
+	}
+}
+
+void CRemoteClientDlg::threadEntryForWatchData(void* arg)
+{
+	CRemoteClientDlg* thiz = (CRemoteClientDlg*)arg;
+	thiz->threadWatchData();
+	_endthread();
+}
+
+void CRemoteClientDlg::threadWatchData()
+{
+	CClientSocket* pClient = NULL;
+	do {
+		CClientSocket* pClient = CClientSocket::getInstance();
+	} while (pClient == NULL);
+	for (;;) {
+		CPacket pack(6, NULL, 0);
+		bool ret = pClient->Send(pack);
+		if (ret) {
+			int cmd = pClient->DealCommand();
+			if (cmd == 6) {
+				if (m_isFull == false) { // 更新数据到缓存
+					BYTE* pData = (BYTE*)pClient->GetPacket().strData.c_str();
+					HGLOBAL hMem = GlobalAlloc(GMEM_MOVEABLE, 0);
+					if (hMem == NULL) {
+						TRACE("内存不足\r\n");
+						Sleep(1);
+						continue;
+					}
+					IStream* pStream = NULL;
+					HRESULT hRet = CreateStreamOnHGlobal(hMem, TRUE, &pStream);
+					if (hRet == S_OK) {
+						ULONG length = 0;
+						pStream->Write(pData, pClient->GetPacket().strData.size(), &length);
+						LARGE_INTEGER bg = { 0 };
+						pStream->Seek(bg, STREAM_SEEK_SET, NULL);
+						m_image.Load(pStream);
+						m_isFull = true;
+					}
+				}
+			}
+		}
+		else {
+			Sleep(1);
+		}
 	}
 }
 
@@ -456,4 +504,12 @@ LRESULT CRemoteClientDlg::OnSendPacket(WPARAM wParam, LPARAM lParam)
 	CString strFile = (LPCSTR)lParam;
 	int ret = SendCommandPacket(wParam >> 1, wParam & 1, (BYTE*)(LPCSTR)strFile, strFile.GetLength());
 	return ret;
+}
+
+
+void CRemoteClientDlg::OnBnClickedBtnStartWatch()
+{
+	_beginthread(CRemoteClientDlg::threadEntryForWatchData, 0, this);
+	GetDlgItem(IDC_BTN_START_WATCH)->EnableWindow(FALSE);
+
 }

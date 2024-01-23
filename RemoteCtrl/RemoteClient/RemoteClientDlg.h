@@ -20,10 +20,16 @@ public:
 	enum { IDD = IDD_REMOTECLIENT_DIALOG };
 #endif
 
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV 支持
 
 private:
+	CImage m_image; // 缓存
+	bool m_isFull;  // 缓存是否有数据，true表示有缓存数据
+
+private:
+	static void threadEntryForWatchData(void* arg); // 静态函数不能使用this指针
+	void threadWatchData();
 	static void threadEntryForDownFile(void* arg);
 	void threadDownFile();
 	void LoadFileCurrent();
@@ -71,4 +77,5 @@ public:
 	afx_msg void OnDeleteFile();
 	afx_msg void OnRunFile();
 	afx_msg LRESULT OnSendPacket(WPARAM wParam, LPARAM lParam);
+	afx_msg void OnBnClickedBtnStartWatch();
 };
