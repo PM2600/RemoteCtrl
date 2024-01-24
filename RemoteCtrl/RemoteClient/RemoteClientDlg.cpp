@@ -7,6 +7,7 @@
 #include "RemoteClient.h"
 #include "RemoteClientDlg.h"
 #include "afxdialogex.h"
+#include "WatchDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -234,17 +235,16 @@ void CRemoteClientDlg::threadEntryForWatchData(void* arg)
 
 void CRemoteClientDlg::threadWatchData()
 {
+	Sleep(50);
 	CClientSocket* pClient = NULL;
 	do {
-		CClientSocket* pClient = CClientSocket::getInstance();
+		pClient = CClientSocket::getInstance();
 	} while (pClient == NULL);
 	for (;;) {
-		CPacket pack(6, NULL, 0);
-		bool ret = pClient->Send(pack);
-		if (ret) {
-			int cmd = pClient->DealCommand();
-			if (cmd == 6) {
-				if (m_isFull == false) { // 更新数据到缓存
+		if (m_isFull == false) {
+			int ret = SendMessage(WM_SEND_PACKET, 6 << 1 | 1);
+			if (ret == 6) {
+				{ // 更新数据到缓存
 					BYTE* pData = (BYTE*)pClient->GetPacket().strData.c_str();
 					HGLOBAL hMem = GlobalAlloc(GMEM_MOVEABLE, 0);
 					if (hMem == NULL) {
@@ -263,6 +263,9 @@ void CRemoteClientDlg::threadWatchData()
 						m_isFull = true;
 					}
 				}
+			}
+			else {
+				Sleep(1);
 			}
 		}
 		else {
@@ -501,15 +504,27 @@ void CRemoteClientDlg::OnRunFile()
 
 LRESULT CRemoteClientDlg::OnSendPacket(WPARAM wParam, LPARAM lParam)
 {
-	CString strFile = (LPCSTR)lParam;
-	int ret = SendCommandPacket(wParam >> 1, wParam & 1, (BYTE*)(LPCSTR)strFile, strFile.GetLength());
+	int ret = 0;
+	int cmd = wParam >> 1;
+	CString strFile;
+	switch (cmd) {
+	case 4:
+		strFile = (LPCSTR)lParam;
+		ret = SendCommandPacket(cmd, wParam & 1, (BYTE*)(LPCSTR)strFile, strFile.GetLength());
+		break;
+	case 6:
+		ret = SendCommandPacket(cmd, wParam & 1);
+		break;
+	default:
+		ret = -1;
+	}
 	return ret;
 }
 
 
 void CRemoteClientDlg::OnBnClickedBtnStartWatch()
 {
+	CWatchDialog dlg(this);
 	_beginthread(CRemoteClientDlg::threadEntryForWatchData, 0, this);
-	GetDlgItem(IDC_BTN_START_WATCH)->EnableWindow(FALSE);
-
+	dlg.DoModal();
 }
