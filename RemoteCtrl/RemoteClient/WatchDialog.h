@@ -17,6 +17,9 @@ public:
 	enum { IDD = IDD_DLG_WATCH };
 #endif
 
+public:
+	int m_ObjWidth;
+	int m_ObjHeight;
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
