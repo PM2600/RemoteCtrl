@@ -13,12 +13,14 @@
 #define IDD_DLG_WATCH                   132
 #define IDC_BUTTON1                     1000
 #define IDC_BTN_TEST                    1000
+#define IDC_BTN_LOCK                    1000
 #define IDC_EDIT_PORT                   1001
 #define IDC_IPADDRESS_SERV              1005
 #define IDC_TREE_DIR                    1006
 #define IDC_LIST_FILE                   1007
 #define IDC_BTN_FILEINFO                1010
 #define IDC_BUTTON7                     1013
+#define IDC_BTN_UNLOCK                  1013
 #define IDC_EDIT_INFO                   1014
 #define IDC_BTN_START_WATCH             1015
 #define IDC_WATCH                       1016
@@ -35,7 +37,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        134
 #define _APS_NEXT_COMMAND_VALUE         32777
-#define _APS_NEXT_CONTROL_VALUE         1017
+#define _APS_NEXT_CONTROL_VALUE         1018
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
