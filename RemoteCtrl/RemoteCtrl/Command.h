@@ -8,5 +8,6 @@ public:
 	int ExcuteCommand(int nCmd);
 protected:
 	typedef int(CCommand::* CMDFUNC)(); //成员函数指针
+	std::map<int, CMDFUNC> m_mapFunction;
 };
 
