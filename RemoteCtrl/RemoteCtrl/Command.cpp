@@ -1,25 +1,34 @@
 #include "pch.h"
 #include "Command.h"
 
-CCommand::CCommand()
+CCommand::CCommand():threadid(0)
 {
 	struct {
 		int nCmd;
 		CMDFUNC func;
 	}data[] = {
-		{1, NULL},
-		{2, NULL},
-		{3, NULL},
-		{4, NULL},
-		{5, NULL},
-		{6, NULL},
-		{7, NULL},
-		{8, NULL},
-		{9, NULL},
-		{1981, NULL},
+		{1, &CCommand::MakeDiverInfo},
+		{2, &CCommand::MakeDirectoryInfo},
+		{3, &CCommand::RunFile},
+		{4, &CCommand::DownLoadFile},
+		{5, &CCommand::MouseEvent},
+		{6, &CCommand::SendScreen},
+		{7, &CCommand::LockMachine},
+		{8, &CCommand::UnlockMachine},
+		{9, &CCommand::DeleteLocalFile},
+		{1981, &CCommand::TestConnect},
 		{-1, NULL}
 	};
 	for (int i = 0; data[i].nCmd != -1; i++) {
 		m_mapFunction.insert(std::pair<int, CMDFUNC>(data[i].nCmd, data[i].func));
 	}
+}
+
+int CCommand::ExcuteCommand(int nCmd)
+{
+	std::map<int, CMDFUNC>::iterator it = m_mapFunction.find(nCmd);
+	if (it == m_mapFunction.end()) {
+		return -1;
+	}
+	return (this->*it->second)();
 }
