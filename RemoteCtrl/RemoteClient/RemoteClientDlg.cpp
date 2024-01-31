@@ -316,7 +316,7 @@ void CRemoteClientDlg::threadDownFile()
 				TRACE("ret = %d\r\n", ret);
 				break;
 			}
-			long long nLength = *(long long*)CClientSocket::getInstance()->GetPacket().strData.c_str();
+			long long nLength = *(long long*)pClient->GetPacket().strData.c_str();
 			if (nLength == 0) {
 				AfxMessageBox("文件长度为0或者无法读取文件");
 				break;

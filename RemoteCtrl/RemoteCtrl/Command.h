@@ -179,11 +179,13 @@ protected:
             size_t rlen = 0;
             do {
                 rlen = fread(buffer, 1, 1024, pFile);
-                lstPacket.push_back(CPacket(4, (BYTE*)&data, 8));
+                lstPacket.push_back(CPacket(4, (BYTE*)&buffer, rlen));
             } while (rlen >= 1024);
             fclose(pFile);
         }
-        lstPacket.push_back(CPacket(4, NULL, 0));
+        else {
+            lstPacket.push_back(CPacket(4, (BYTE*)&data, 0));
+        }
         return 0;
     }
 

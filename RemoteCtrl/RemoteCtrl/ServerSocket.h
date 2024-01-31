@@ -84,7 +84,7 @@ protected:
 		return true;
 	}
 
-#define BUFFER_SIZE 4096
+#define BUFFER_SIZE 4096000
 	int DealCommand() {
 		if (m_client == -1)
 			return -1;
