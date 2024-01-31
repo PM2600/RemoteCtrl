@@ -34,35 +34,17 @@ int main()
         }
         else
         {
-            // TODO: 在此处为应用程序的行为编写代码。
             CCommand cmd;
-            
-
-            CServerSocket* pserver = CServerSocket::getInstance();
-            int count = 0;
-            if (pserver->InitSocket() == false) {
+            int ret = CServerSocket::getInstance()->Run(&CCommand::RunCommand, &cmd);
+            switch (ret) {
+            case -1:
                 MessageBox(NULL, _T(""), _T("网络初始化异常，请检查网络状态"), MB_OK | MB_ICONERROR);
                 exit(0);
-            }
-            while ((pserver = (CServerSocket::getInstance())) != NULL) {
-                if (pserver->AcceptClient() == false) {
-                    if (count >= 3) {
-                        MessageBox(NULL, _T("多次无法接入用户， 结束程序"), _T("失败，"), MB_OK | MB_ICONERROR);
-                        exit(0);
-                    }
-                    MessageBox(NULL, _T("自动重试"), _T("接入用户失败，"),  MB_OK | MB_ICONERROR);
-                    count++;
-                }
-                TRACE("Accept return true\r\n");
-                int ret = pserver->DealCommand();
-                TRACE("DealCommand ret=%d\r\n", ret);
-                if (ret > 0) {
-                    ret = cmd.ExcuteCommand(ret);
-                    if (ret != 0) {
-                        TRACE("执行命令失败: %d ret=%d\r\n", pserver->GetPacket().sCmd, ret);
-                    }
-                    pserver->CloseClient();
-                }    
+                break;
+            case -2:
+                MessageBox(NULL, _T("多次无法接入用户， 结束程序"), _T("失败，"), MB_OK | MB_ICONERROR);
+                exit(0);
+                break;
             }
         }
     }
