@@ -8693,20 +8693,8 @@ b.请求控制客户端
 </XPD:OBJ>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:ATTR name="#Operations" type="integer">19</XPD:ATTR>
-<XPD:OBJ name="Operations[0]" type="UMLOperation" guid="1eOkRgVx9kyZlDeTQ2xHIgAA">
-<XPD:ATTR name="Name" type="string">DECLARE_DYNAMIC</XPD:ATTR>
-<XPD:ATTR name="StereotypeProfile" type="string">Cpp</XPD:ATTR>
-<XPD:ATTR name="StereotypeName" type="string">CppMacro</XPD:ATTR>
-<XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
-<XPD:REF name="Owner">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
-<XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
-<XPD:OBJ name="Parameters[0]" type="UMLParameter" guid="kSw90t1bpkK5GhlxbmZrwAAA">
-<XPD:ATTR name="Name" type="string">CWatchDialog</XPD:ATTR>
-<XPD:REF name="BehavioralFeature">1eOkRgVx9kyZlDeTQ2xHIgAA</XPD:REF>
-</XPD:OBJ>
-</XPD:OBJ>
-<XPD:OBJ name="Operations[1]" type="UMLOperation" guid="aLaNsVE+JUG9wMuhp9VXEAAA">
+<XPD:ATTR name="#Operations" type="integer">17</XPD:ATTR>
+<XPD:OBJ name="Operations[0]" type="UMLOperation" guid="aLaNsVE+JUG9wMuhp9VXEAAA">
 <XPD:ATTR name="Name" type="string">CWatchDialog</XPD:ATTR>
 <XPD:ATTR name="StereotypeName" type="string">create</XPD:ATTR>
 <XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
@@ -8726,13 +8714,13 @@ b.请求控制客户端
 </XPD:OBJ>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[2]" type="UMLOperation" guid="DoxkO0zCWUKqxLZi1Q/mPQAA">
+<XPD:OBJ name="Operations[1]" type="UMLOperation" guid="DoxkO0zCWUKqxLZi1Q/mPQAA">
 <XPD:ATTR name="Name" type="string">CWatchDialog</XPD:ATTR>
 <XPD:ATTR name="StereotypeName" type="string">destroy</XPD:ATTR>
 <XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
 <XPD:REF name="Owner">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[3]" type="UMLOperation" guid="02lQpr3ImUWwu5Z7b1ixawAA">
+<XPD:OBJ name="Operations[2]" type="UMLOperation" guid="02lQpr3ImUWwu5Z7b1ixawAA">
 <XPD:ATTR name="Name" type="string">DoDataExchange</XPD:ATTR>
 <XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkProtected</XPD:ATTR>
 <XPD:REF name="Owner">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
@@ -8765,14 +8753,7 @@ b.请求控制客户端
 <XPD:REF name="BehavioralFeature">02lQpr3ImUWwu5Z7b1ixawAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[4]" type="UMLOperation" guid="E1vmcl7rc0GhoeOTF/TYdgAA">
-<XPD:ATTR name="Name" type="string">DECLARE_MESSAGE_MAP</XPD:ATTR>
-<XPD:ATTR name="StereotypeProfile" type="string">Cpp</XPD:ATTR>
-<XPD:ATTR name="StereotypeName" type="string">CppMacro</XPD:ATTR>
-<XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
-<XPD:REF name="Owner">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
-</XPD:OBJ>
-<XPD:OBJ name="Operations[5]" type="UMLOperation" guid="stIB6q0Imki01gXN8tshkwAA">
+<XPD:OBJ name="Operations[3]" type="UMLOperation" guid="stIB6q0Imki01gXN8tshkwAA">
 <XPD:ATTR name="Name" type="string">UserPoint2RemoteScreenPoint</XPD:ATTR>
 <XPD:REF name="Owner">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">3</XPD:ATTR>
@@ -8801,7 +8782,7 @@ b.请求控制客户端
 <XPD:REF name="BehavioralFeature">stIB6q0Imki01gXN8tshkwAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[6]" type="UMLOperation" guid="F47mZCjVpECHsRiJzMt0hQAA">
+<XPD:OBJ name="Operations[4]" type="UMLOperation" guid="F47mZCjVpECHsRiJzMt0hQAA">
 <XPD:ATTR name="Name" type="string">OnInitDialog</XPD:ATTR>
 <XPD:REF name="Owner">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
 <XPD:ATTR name="#TaggedValues" type="integer">1</XPD:ATTR>
@@ -8820,7 +8801,7 @@ b.请求控制客户端
 <XPD:REF name="BehavioralFeature">F47mZCjVpECHsRiJzMt0hQAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[7]" type="UMLOperation" guid="BlhECsx3SkS/W3qIfYdDrQAA">
+<XPD:OBJ name="Operations[5]" type="UMLOperation" guid="BlhECsx3SkS/W3qIfYdDrQAA">
 <XPD:ATTR name="Name" type="string">OnTimer</XPD:ATTR>
 <XPD:REF name="Owner">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">2</XPD:ATTR>
@@ -8836,7 +8817,7 @@ b.请求控制客户端
 <XPD:REF name="BehavioralFeature">BlhECsx3SkS/W3qIfYdDrQAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[8]" type="UMLOperation" guid="AjKl3nTpdk67sxlDHgt5HAAA">
+<XPD:OBJ name="Operations[6]" type="UMLOperation" guid="AjKl3nTpdk67sxlDHgt5HAAA">
 <XPD:ATTR name="Name" type="string">OnLButtonDblClk</XPD:ATTR>
 <XPD:REF name="Owner">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">3</XPD:ATTR>
@@ -8857,7 +8838,7 @@ b.请求控制客户端
 <XPD:REF name="BehavioralFeature">AjKl3nTpdk67sxlDHgt5HAAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[9]" type="UMLOperation" guid="S920RaiJd0u8KlwTz65+CwAA">
+<XPD:OBJ name="Operations[7]" type="UMLOperation" guid="S920RaiJd0u8KlwTz65+CwAA">
 <XPD:ATTR name="Name" type="string">OnLButtonDown</XPD:ATTR>
 <XPD:REF name="Owner">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">3</XPD:ATTR>
@@ -8878,7 +8859,7 @@ b.请求控制客户端
 <XPD:REF name="BehavioralFeature">S920RaiJd0u8KlwTz65+CwAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[10]" type="UMLOperation" guid="b9PBDQVFfE+N8qYEM/VSDQAA">
+<XPD:OBJ name="Operations[8]" type="UMLOperation" guid="b9PBDQVFfE+N8qYEM/VSDQAA">
 <XPD:ATTR name="Name" type="string">OnLButtonUp</XPD:ATTR>
 <XPD:REF name="Owner">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">3</XPD:ATTR>
@@ -8899,7 +8880,7 @@ b.请求控制客户端
 <XPD:REF name="BehavioralFeature">b9PBDQVFfE+N8qYEM/VSDQAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[11]" type="UMLOperation" guid="Kj/wdMZ+2kig4puIz6GbYgAA">
+<XPD:OBJ name="Operations[9]" type="UMLOperation" guid="Kj/wdMZ+2kig4puIz6GbYgAA">
 <XPD:ATTR name="Name" type="string">OnRButtonDblClk</XPD:ATTR>
 <XPD:REF name="Owner">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">3</XPD:ATTR>
@@ -8920,7 +8901,7 @@ b.请求控制客户端
 <XPD:REF name="BehavioralFeature">Kj/wdMZ+2kig4puIz6GbYgAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[12]" type="UMLOperation" guid="fNQhYwv88Uqo64w+Ev0JKAAA">
+<XPD:OBJ name="Operations[10]" type="UMLOperation" guid="fNQhYwv88Uqo64w+Ev0JKAAA">
 <XPD:ATTR name="Name" type="string">OnRButtonDown</XPD:ATTR>
 <XPD:REF name="Owner">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">3</XPD:ATTR>
@@ -8941,7 +8922,7 @@ b.请求控制客户端
 <XPD:REF name="BehavioralFeature">fNQhYwv88Uqo64w+Ev0JKAAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[13]" type="UMLOperation" guid="d2h7Dbu3Y0KTOeyy4+UXYAAA">
+<XPD:OBJ name="Operations[11]" type="UMLOperation" guid="d2h7Dbu3Y0KTOeyy4+UXYAAA">
 <XPD:ATTR name="Name" type="string">OnRButtonUp</XPD:ATTR>
 <XPD:REF name="Owner">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">3</XPD:ATTR>
@@ -8962,7 +8943,7 @@ b.请求控制客户端
 <XPD:REF name="BehavioralFeature">d2h7Dbu3Y0KTOeyy4+UXYAAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[14]" type="UMLOperation" guid="H7rIFg49k0CLql/PcSOfbAAA">
+<XPD:OBJ name="Operations[12]" type="UMLOperation" guid="H7rIFg49k0CLql/PcSOfbAAA">
 <XPD:ATTR name="Name" type="string">OnMouseMove</XPD:ATTR>
 <XPD:REF name="Owner">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">3</XPD:ATTR>
@@ -8983,7 +8964,7 @@ b.请求控制客户端
 <XPD:REF name="BehavioralFeature">H7rIFg49k0CLql/PcSOfbAAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[15]" type="UMLOperation" guid="VRupZcPjWkSc3/2mRjqC3QAA">
+<XPD:OBJ name="Operations[13]" type="UMLOperation" guid="VRupZcPjWkSc3/2mRjqC3QAA">
 <XPD:ATTR name="Name" type="string">OnStnClickedWatch</XPD:ATTR>
 <XPD:REF name="Owner">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
@@ -8994,7 +8975,7 @@ b.请求控制客户端
 <XPD:REF name="BehavioralFeature">VRupZcPjWkSc3/2mRjqC3QAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[16]" type="UMLOperation" guid="tDq6vQsmOU2iWXSX+HwoyQAA">
+<XPD:OBJ name="Operations[14]" type="UMLOperation" guid="tDq6vQsmOU2iWXSX+HwoyQAA">
 <XPD:ATTR name="Name" type="string">OnOK</XPD:ATTR>
 <XPD:REF name="Owner">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
 <XPD:ATTR name="#TaggedValues" type="integer">1</XPD:ATTR>
@@ -9013,7 +8994,7 @@ b.请求控制客户端
 <XPD:REF name="BehavioralFeature">tDq6vQsmOU2iWXSX+HwoyQAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[17]" type="UMLOperation" guid="0F4zynZh5kiQ1LTwnRYaTwAA">
+<XPD:OBJ name="Operations[15]" type="UMLOperation" guid="0F4zynZh5kiQ1LTwnRYaTwAA">
 <XPD:ATTR name="Name" type="string">OnBnClickedBtnLock</XPD:ATTR>
 <XPD:REF name="Owner">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
@@ -9024,7 +9005,7 @@ b.请求控制客户端
 <XPD:REF name="BehavioralFeature">0F4zynZh5kiQ1LTwnRYaTwAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:OBJ name="Operations[18]" type="UMLOperation" guid="nYipWIaICE+D9t/eX4YkOgAA">
+<XPD:OBJ name="Operations[16]" type="UMLOperation" guid="nYipWIaICE+D9t/eX4YkOgAA">
 <XPD:ATTR name="Name" type="string">OnBnClickedBtnUnlock</XPD:ATTR>
 <XPD:REF name="Owner">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
 <XPD:ATTR name="#Parameters" type="integer">1</XPD:ATTR>
