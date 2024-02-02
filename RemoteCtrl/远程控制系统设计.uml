@@ -5809,7 +5809,7 @@ b.请求控制客户端
 <XPD:ATTR name="Left" type="integer">92</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">604</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">118</XPD:ATTR>
-<XPD:ATTR name="Height" type="integer">69</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">82</XPD:ATTR>
 <XPD:REF name="Model">PVZsof8lM02YJ3ZrraDuuwAA</XPD:REF>
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="hYlB9JMEDEez1pzhOpksDAAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="9juWksDO40WGgRx/7p9kLQAA">
@@ -6643,7 +6643,7 @@ b.请求控制客户端
 <XPD:ATTR name="Left" type="integer">916</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">504</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">346</XPD:ATTR>
-<XPD:ATTR name="Height" type="integer">305</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">316</XPD:ATTR>
 <XPD:REF name="Model">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="mgF7UOX//Ueb7OQj0FB0sQAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="c81rifc2zkiDSh+V//d6cQAA">
@@ -6757,7 +6757,7 @@ b.请求控制客户端
 <XPD:ATTR name="Left" type="integer">1304</XPD:ATTR>
 <XPD:ATTR name="Top" type="integer">200</XPD:ATTR>
 <XPD:ATTR name="Width" type="integer">105</XPD:ATTR>
-<XPD:ATTR name="Height" type="integer">43</XPD:ATTR>
+<XPD:ATTR name="Height" type="integer">95</XPD:ATTR>
 <XPD:REF name="Model">fOLdLGBzGk6AdfgsOC/bfgAA</XPD:REF>
 <XPD:OBJ name="NameCompartment" type="UMLNameCompartmentView" guid="GMhHhr/8VkOMAZMQ5+BK8QAA">
 <XPD:OBJ name="NameLabel" type="LabelView" guid="K2+XS4DVMUWmrHr14v5VygAA">
@@ -7903,8 +7903,6 @@ b.请求控制客户端
 <XPD:REF name="BehavioralFeature">96ep7yBkwkOpRooo2rIsigAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:ATTR name="#TypedParameters" type="integer">1</XPD:ATTR>
-<XPD:REF name="TypedParameters[0]">I4BQ8KLP9UqPh53ckIHt7gAA</XPD:REF>
 <XPD:ATTR name="#Associations" type="integer">1</XPD:ATTR>
 <XPD:REF name="Associations[0]">e4RVZx1qGk6MGYM+zs2eggAA</XPD:REF>
 <XPD:ATTR name="#Attributes" type="integer">5</XPD:ATTR>
@@ -7959,8 +7957,8 @@ b.请求控制客户端
 <XPD:REF name="Participant">vjfNK9XV00ewbNJ3OPZPTwAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">vS6PpImFOEmtiJIb2nTIogAA</XPD:REF>
-<XPD:REF name="Views[1]">FtuPfknI9UKUjjJV4KsHOAAA</XPD:REF>
-<XPD:REF name="Views[2]">D+5ywmNHgES6Fsdx30VH9QAA</XPD:REF>
+<XPD:REF name="Views[1]">D+5ywmNHgES6Fsdx30VH9QAA</XPD:REF>
+<XPD:REF name="Views[2]">FtuPfknI9UKUjjJV4KsHOAAA</XPD:REF>
 <XPD:REF name="Views[3]">llSi9wRNLUycaE6xGLRSuQAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Connections[1]" type="UMLAssociationEnd" guid="e4RVZx1qGk6MGYM+zs2eggAA">
@@ -7969,8 +7967,8 @@ b.请求控制客户端
 <XPD:REF name="Participant">bqG9jFOg5Ue8rw/2Y/0NRgAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">4</XPD:ATTR>
 <XPD:REF name="Views[0]">n64/C8NY0kOjsF8KgZbvHwAA</XPD:REF>
-<XPD:REF name="Views[1]">XCdTbVGEAEyPd9if9QpQKQAA</XPD:REF>
-<XPD:REF name="Views[2]">p9D1pNq6k020TBGAjUpoUwAA</XPD:REF>
+<XPD:REF name="Views[1]">p9D1pNq6k020TBGAjUpoUwAA</XPD:REF>
+<XPD:REF name="Views[2]">XCdTbVGEAEyPd9if9QpQKQAA</XPD:REF>
 <XPD:REF name="Views[3]">z07LO+bTQUmzMQVZ8ZH2UwAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -8598,12 +8596,12 @@ b.请求控制客户端
 <XPD:REF name="Participant">uq49n7l6f0yOIf4y3tKUfgAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">8</XPD:ATTR>
 <XPD:REF name="Views[0]">SyKaNOSDB0WKeh9G9DexOAAA</XPD:REF>
-<XPD:REF name="Views[1]">ZnbK0EFe90i2k7kaiqEazAAA</XPD:REF>
-<XPD:REF name="Views[2]">tKeakiykR0yyAljtauXz1AAA</XPD:REF>
+<XPD:REF name="Views[1]">tKeakiykR0yyAljtauXz1AAA</XPD:REF>
+<XPD:REF name="Views[2]">ZnbK0EFe90i2k7kaiqEazAAA</XPD:REF>
 <XPD:REF name="Views[3]">WfaPXZFtsUW6GjgAI0gNSwAA</XPD:REF>
 <XPD:REF name="Views[4]">T59tJqovdEidht27yrU/OwAA</XPD:REF>
-<XPD:REF name="Views[5]">UcTWoF2nZEalwDBxTbYkBAAA</XPD:REF>
-<XPD:REF name="Views[6]">9e0hWJLMbkW9K4NW2EiWggAA</XPD:REF>
+<XPD:REF name="Views[5]">9e0hWJLMbkW9K4NW2EiWggAA</XPD:REF>
+<XPD:REF name="Views[6]">UcTWoF2nZEalwDBxTbYkBAAA</XPD:REF>
 <XPD:REF name="Views[7]">/Svdnyn460mG5XG3QyZ1uAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Connections[1]" type="UMLAssociationEnd" guid="UjU4IC3t0E+xTTDMiUD4igAA">
@@ -8612,12 +8610,12 @@ b.请求控制客户端
 <XPD:REF name="Participant">fEvtcNMikkqJK+8zO5CEogAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">8</XPD:ATTR>
 <XPD:REF name="Views[0]">eQp+TtTP4UmOqVnLnkjCcgAA</XPD:REF>
-<XPD:REF name="Views[1]">zmrdAFlMMUSrM46IpsjMTgAA</XPD:REF>
-<XPD:REF name="Views[2]">hLGjS9hunUyPse9iXDRdUAAA</XPD:REF>
+<XPD:REF name="Views[1]">hLGjS9hunUyPse9iXDRdUAAA</XPD:REF>
+<XPD:REF name="Views[2]">zmrdAFlMMUSrM46IpsjMTgAA</XPD:REF>
 <XPD:REF name="Views[3]">cFwk9ekX40Wp7iV1tAd5JwAA</XPD:REF>
 <XPD:REF name="Views[4]">/5LiHQMllEO3QT7hJEjy4gAA</XPD:REF>
-<XPD:REF name="Views[5]">KMaQ+CnaEEOed8//5WsndAAA</XPD:REF>
-<XPD:REF name="Views[6]">UhvY+0iUM0mpsK6xB5FwvwAA</XPD:REF>
+<XPD:REF name="Views[5]">UhvY+0iUM0mpsK6xB5FwvwAA</XPD:REF>
+<XPD:REF name="Views[6]">KMaQ+CnaEEOed8//5WsndAAA</XPD:REF>
 <XPD:REF name="Views[7]">W8ipf/Nnr0CMRvNqArphTgAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -8638,12 +8636,12 @@ b.请求控制客户端
 <XPD:REF name="Participant">AmBFUPPc1U+cTjenWnjAWQAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">8</XPD:ATTR>
 <XPD:REF name="Views[0]">fr5VHLOrU0yMq3yAdv0yYQAA</XPD:REF>
-<XPD:REF name="Views[1]">G1AS4vh1aUm2K/8Pi0kAnwAA</XPD:REF>
-<XPD:REF name="Views[2]">wwNxLD3uEkWlTMNQUWnssgAA</XPD:REF>
+<XPD:REF name="Views[1]">wwNxLD3uEkWlTMNQUWnssgAA</XPD:REF>
+<XPD:REF name="Views[2]">G1AS4vh1aUm2K/8Pi0kAnwAA</XPD:REF>
 <XPD:REF name="Views[3]">lsT+1BIVdEK0mTA+8C0LAQAA</XPD:REF>
 <XPD:REF name="Views[4]">PYfyD5B3uk6CJAxn1uVAuwAA</XPD:REF>
-<XPD:REF name="Views[5]">23NimHs4PUquL2Ps2yxJTAAA</XPD:REF>
-<XPD:REF name="Views[6]">JEVwM/XIUUGR6nfphoOlQwAA</XPD:REF>
+<XPD:REF name="Views[5]">JEVwM/XIUUGR6nfphoOlQwAA</XPD:REF>
+<XPD:REF name="Views[6]">23NimHs4PUquL2Ps2yxJTAAA</XPD:REF>
 <XPD:REF name="Views[7]">HRKXxRpTc0qU5+06NjTuhAAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Connections[1]" type="UMLAssociationEnd" guid="H/joWc5P906u7bYq53VUAQAA">
@@ -8652,12 +8650,12 @@ b.请求控制客户端
 <XPD:REF name="Participant">fEvtcNMikkqJK+8zO5CEogAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">8</XPD:ATTR>
 <XPD:REF name="Views[0]">GLvt7LIEAUe/KM0uCwYv9wAA</XPD:REF>
-<XPD:REF name="Views[1]">Mp9JZtYZlk6sR2wQACRiYQAA</XPD:REF>
-<XPD:REF name="Views[2]">Iv9iDs2jv0KbrkyMaxjY8QAA</XPD:REF>
+<XPD:REF name="Views[1]">Iv9iDs2jv0KbrkyMaxjY8QAA</XPD:REF>
+<XPD:REF name="Views[2]">Mp9JZtYZlk6sR2wQACRiYQAA</XPD:REF>
 <XPD:REF name="Views[3]">dVVBJFv6rE+w9S0L6Ne+MAAA</XPD:REF>
 <XPD:REF name="Views[4]">br94ca268EeXmeO0/KmehwAA</XPD:REF>
-<XPD:REF name="Views[5]">yqAfPN3KvkSa22Y6XCZGmwAA</XPD:REF>
-<XPD:REF name="Views[6]">2rvkFFxV/UGzO6ypd+4LIAAA</XPD:REF>
+<XPD:REF name="Views[5]">2rvkFFxV/UGzO6ypd+4LIAAA</XPD:REF>
+<XPD:REF name="Views[6]">yqAfPN3KvkSa22Y6XCZGmwAA</XPD:REF>
 <XPD:REF name="Views[7]">dt/yDQX84E+qqQLpdQ2jhAAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -8712,12 +8710,12 @@ b.请求控制客户端
 <XPD:REF name="Participant">TfgDb2TIU0S2SX/CfJd8NQAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">8</XPD:ATTR>
 <XPD:REF name="Views[0]">YKo2ZlC0GUydN29sxXGvogAA</XPD:REF>
-<XPD:REF name="Views[1]">Po+MR1qPgEmzg4hrIHtEDwAA</XPD:REF>
-<XPD:REF name="Views[2]">jioo5Z8tKE+FYVsgnrLi+AAA</XPD:REF>
+<XPD:REF name="Views[1]">jioo5Z8tKE+FYVsgnrLi+AAA</XPD:REF>
+<XPD:REF name="Views[2]">Po+MR1qPgEmzg4hrIHtEDwAA</XPD:REF>
 <XPD:REF name="Views[3]">D0aXPcYOHEGA+CMNbkX6jAAA</XPD:REF>
 <XPD:REF name="Views[4]">zYmxG90N7E+t/YPAaOPmxAAA</XPD:REF>
-<XPD:REF name="Views[5]">HBO+wPPKc0CJnccdqZ2kSwAA</XPD:REF>
-<XPD:REF name="Views[6]">IN8ZkPGF9UWGm6MwI6GXJwAA</XPD:REF>
+<XPD:REF name="Views[5]">IN8ZkPGF9UWGm6MwI6GXJwAA</XPD:REF>
+<XPD:REF name="Views[6]">HBO+wPPKc0CJnccdqZ2kSwAA</XPD:REF>
 <XPD:REF name="Views[7]">87rkh884tESnMb1YGyC8BgAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Connections[1]" type="UMLAssociationEnd" guid="akWcAy9Hh06TNJnnemi6XgAA">
@@ -8726,12 +8724,12 @@ b.请求控制客户端
 <XPD:REF name="Participant">fEvtcNMikkqJK+8zO5CEogAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">8</XPD:ATTR>
 <XPD:REF name="Views[0]">JqoMHzHSlkWQ0L5HjirQeAAA</XPD:REF>
-<XPD:REF name="Views[1]">zjdmqVnzZE+svSJGbyD4RAAA</XPD:REF>
-<XPD:REF name="Views[2]">rnCVZweA10SB23rQdTVk8QAA</XPD:REF>
+<XPD:REF name="Views[1]">rnCVZweA10SB23rQdTVk8QAA</XPD:REF>
+<XPD:REF name="Views[2]">zjdmqVnzZE+svSJGbyD4RAAA</XPD:REF>
 <XPD:REF name="Views[3]">OkmBisu5dUGJb7yWt09mbwAA</XPD:REF>
 <XPD:REF name="Views[4]">rOxn/s/QU0iP/5x25HfPDAAA</XPD:REF>
-<XPD:REF name="Views[5]">qN7xFFJW5kC3HxpQwchU7gAA</XPD:REF>
-<XPD:REF name="Views[6]">CCsr3lf9LE2y1qoka2i/2wAA</XPD:REF>
+<XPD:REF name="Views[5]">CCsr3lf9LE2y1qoka2i/2wAA</XPD:REF>
+<XPD:REF name="Views[6]">qN7xFFJW5kC3HxpQwchU7gAA</XPD:REF>
 <XPD:REF name="Views[7]">f56yayhq9EGmTXziUyWgqAAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -8752,12 +8750,12 @@ b.请求控制客户端
 <XPD:REF name="Participant">O7wJQmuLl0SC/mUEAY2DmgAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">8</XPD:ATTR>
 <XPD:REF name="Views[0]">dwPYJMahjUaCJbkXfUyZ+gAA</XPD:REF>
-<XPD:REF name="Views[1]">j+sS3VyqzEqp62qldAMOqgAA</XPD:REF>
-<XPD:REF name="Views[2]">KyuoVZRMJUSP7W/HkP+LRQAA</XPD:REF>
+<XPD:REF name="Views[1]">KyuoVZRMJUSP7W/HkP+LRQAA</XPD:REF>
+<XPD:REF name="Views[2]">j+sS3VyqzEqp62qldAMOqgAA</XPD:REF>
 <XPD:REF name="Views[3]">/aNr2awb1EmHS/KyQiZJ4QAA</XPD:REF>
 <XPD:REF name="Views[4]">E2k+UR9H+0icfzUZt/DKqgAA</XPD:REF>
-<XPD:REF name="Views[5]">yRVJpy63qkW2ND1mU/HiogAA</XPD:REF>
-<XPD:REF name="Views[6]">ykLw+EAX9kyDqszT7INm1gAA</XPD:REF>
+<XPD:REF name="Views[5]">ykLw+EAX9kyDqszT7INm1gAA</XPD:REF>
+<XPD:REF name="Views[6]">yRVJpy63qkW2ND1mU/HiogAA</XPD:REF>
 <XPD:REF name="Views[7]">wiPqg0m720qUt3cCWlYUVQAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Connections[1]" type="UMLAssociationEnd" guid="Sf7QxSmwmkGjliznE9RZpgAA">
@@ -8766,12 +8764,12 @@ b.请求控制客户端
 <XPD:REF name="Participant">fEvtcNMikkqJK+8zO5CEogAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">8</XPD:ATTR>
 <XPD:REF name="Views[0]">Els7quMTDE+A6jw1dpHQRAAA</XPD:REF>
-<XPD:REF name="Views[1]">9rCz1Nf9qkiisTl5KRm7xwAA</XPD:REF>
-<XPD:REF name="Views[2]">C30ujoyy3kyU29NqS8TCewAA</XPD:REF>
+<XPD:REF name="Views[1]">C30ujoyy3kyU29NqS8TCewAA</XPD:REF>
+<XPD:REF name="Views[2]">9rCz1Nf9qkiisTl5KRm7xwAA</XPD:REF>
 <XPD:REF name="Views[3]">FFZaPBJM+0+seZQaTvG/ZAAA</XPD:REF>
 <XPD:REF name="Views[4]">Ho+OzRslMkeFpZF/FVw5pQAA</XPD:REF>
-<XPD:REF name="Views[5]">Z64ysaPN9kO1Tm9FyjLbjQAA</XPD:REF>
-<XPD:REF name="Views[6]">XJPsBfKBbEeuKkvz5KDR1gAA</XPD:REF>
+<XPD:REF name="Views[5]">XJPsBfKBbEeuKkvz5KDR1gAA</XPD:REF>
+<XPD:REF name="Views[6]">Z64ysaPN9kO1Tm9FyjLbjQAA</XPD:REF>
 <XPD:REF name="Views[7]">PUGsLWjIR0efM+SNJ/nDRgAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -8807,12 +8805,12 @@ b.请求控制客户端
 <XPD:REF name="Participant">vkf5fcg32E2sQHV4koW44wAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">8</XPD:ATTR>
 <XPD:REF name="Views[0]">B2sPV6l09USqLF/hflgLzQAA</XPD:REF>
-<XPD:REF name="Views[1]">MKYxIk4pcUyHepAYFRcApgAA</XPD:REF>
-<XPD:REF name="Views[2]">wfpDObO7uEaqT0cjgJBjjgAA</XPD:REF>
+<XPD:REF name="Views[1]">wfpDObO7uEaqT0cjgJBjjgAA</XPD:REF>
+<XPD:REF name="Views[2]">MKYxIk4pcUyHepAYFRcApgAA</XPD:REF>
 <XPD:REF name="Views[3]">+XqD9eTYxUSfXXPDGvnplQAA</XPD:REF>
 <XPD:REF name="Views[4]">O/67ToJ0Hk2QCH2FyL3oOwAA</XPD:REF>
-<XPD:REF name="Views[5]">clhcSfxC3kSH2M44zGEdNgAA</XPD:REF>
-<XPD:REF name="Views[6]">bT2nL3YuY0+HLSqQIn15+gAA</XPD:REF>
+<XPD:REF name="Views[5]">bT2nL3YuY0+HLSqQIn15+gAA</XPD:REF>
+<XPD:REF name="Views[6]">clhcSfxC3kSH2M44zGEdNgAA</XPD:REF>
 <XPD:REF name="Views[7]">cdZXg+qe6U6ZOJQGj9Nc5wAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Connections[1]" type="UMLAssociationEnd" guid="xYKuUGH8TEeKCROSZTNL1AAA">
@@ -8821,12 +8819,12 @@ b.请求控制客户端
 <XPD:REF name="Participant">uq49n7l6f0yOIf4y3tKUfgAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">8</XPD:ATTR>
 <XPD:REF name="Views[0]">na5SjM7cbkWOO1XtyQHRdgAA</XPD:REF>
-<XPD:REF name="Views[1]">8oWM/IY8Dk2arjmPGfQPmgAA</XPD:REF>
-<XPD:REF name="Views[2]">i1OpLDVQ6U+jxhdEOSKZAQAA</XPD:REF>
+<XPD:REF name="Views[1]">i1OpLDVQ6U+jxhdEOSKZAQAA</XPD:REF>
+<XPD:REF name="Views[2]">8oWM/IY8Dk2arjmPGfQPmgAA</XPD:REF>
 <XPD:REF name="Views[3]">SRv6rYTRAUa9+QtTwYmZFgAA</XPD:REF>
 <XPD:REF name="Views[4]">p/HBzzXEYUWFyBu46osYfAAA</XPD:REF>
-<XPD:REF name="Views[5]">t6INfukp5kqTRDXu8A+jbwAA</XPD:REF>
-<XPD:REF name="Views[6]">xLeag/xCHkaiE+DJA5uNIAAA</XPD:REF>
+<XPD:REF name="Views[5]">xLeag/xCHkaiE+DJA5uNIAAA</XPD:REF>
+<XPD:REF name="Views[6]">t6INfukp5kqTRDXu8A+jbwAA</XPD:REF>
 <XPD:REF name="Views[7]">YjBmz1JNs0G/18cE5i3RXQAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
@@ -8834,14 +8832,14 @@ b.请求控制客户端
 <XPD:ATTR name="Name" type="string">CWatchDialog</XPD:ATTR>
 <XPD:REF name="Namespace">reOaOC5jZkSBq6Ss30NCpwAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">8</XPD:ATTR>
-<XPD:REF name="Views[0]">YoeGtfJ0NEeJmfVuayqkVAAA</XPD:REF>
-<XPD:REF name="Views[1]">b/wUh8u5N0yqbycMf0bcbwAA</XPD:REF>
-<XPD:REF name="Views[2]">Udk/w7nTbk+vS4AWWHG8OwAA</XPD:REF>
-<XPD:REF name="Views[3]">yJBYB0xCm0uM1wjjU1lEFgAA</XPD:REF>
-<XPD:REF name="Views[4]">AWpNjlUlV0WwTgB9kTBqqAAA</XPD:REF>
-<XPD:REF name="Views[5]">pbFop3G+JUOSOjtsYl3vNAAA</XPD:REF>
-<XPD:REF name="Views[6]">QSOC191zY0q70P8LFTUdwwAA</XPD:REF>
-<XPD:REF name="Views[7]">xsE+zThMIEilXoobKv7XaAAA</XPD:REF>
+<XPD:REF name="Views[0]">AWpNjlUlV0WwTgB9kTBqqAAA</XPD:REF>
+<XPD:REF name="Views[1]">pbFop3G+JUOSOjtsYl3vNAAA</XPD:REF>
+<XPD:REF name="Views[2]">QSOC191zY0q70P8LFTUdwwAA</XPD:REF>
+<XPD:REF name="Views[3]">xsE+zThMIEilXoobKv7XaAAA</XPD:REF>
+<XPD:REF name="Views[4]">YoeGtfJ0NEeJmfVuayqkVAAA</XPD:REF>
+<XPD:REF name="Views[5]">b/wUh8u5N0yqbycMf0bcbwAA</XPD:REF>
+<XPD:REF name="Views[6]">Udk/w7nTbk+vS4AWWHG8OwAA</XPD:REF>
+<XPD:REF name="Views[7]">yJBYB0xCm0uM1wjjU1lEFgAA</XPD:REF>
 <XPD:ATTR name="#Generalizations" type="integer">1</XPD:ATTR>
 <XPD:REF name="Generalizations[0]">XFTGagWU/UeuzWDKQd1sswAA</XPD:REF>
 <XPD:ATTR name="#OwnedElements" type="integer">1</XPD:ATTR>
@@ -9224,14 +9222,14 @@ b.请求控制客户端
 <XPD:REF name="Child">MNHidDL30EWmuElcjVAPrgAA</XPD:REF>
 <XPD:REF name="Parent">jUWSt67MVE+hHps3SATDUQAA</XPD:REF>
 <XPD:ATTR name="#Views" type="integer">8</XPD:ATTR>
-<XPD:REF name="Views[0]">oL1qXGO9Z0qIfK0TRNGtIQAA</XPD:REF>
-<XPD:REF name="Views[1]">Xm2eEKpyiUStX1+uCI11FAAA</XPD:REF>
-<XPD:REF name="Views[2]">wGEnx29RXU6bz3Uz5hAIVAAA</XPD:REF>
-<XPD:REF name="Views[3]">UJmtkMbqp0abBpVuUpaZAQAA</XPD:REF>
-<XPD:REF name="Views[4]">hnYuCk7JLUGJGwckJNyO0QAA</XPD:REF>
-<XPD:REF name="Views[5]">VNtGuQWEeUC0fT23CA1xyAAA</XPD:REF>
-<XPD:REF name="Views[6]">2tn2KLBZSkG9aHJccaegWQAA</XPD:REF>
-<XPD:REF name="Views[7]">GQ5KI/93yk2PI66mcmgyHwAA</XPD:REF>
+<XPD:REF name="Views[0]">hnYuCk7JLUGJGwckJNyO0QAA</XPD:REF>
+<XPD:REF name="Views[1]">VNtGuQWEeUC0fT23CA1xyAAA</XPD:REF>
+<XPD:REF name="Views[2]">2tn2KLBZSkG9aHJccaegWQAA</XPD:REF>
+<XPD:REF name="Views[3]">GQ5KI/93yk2PI66mcmgyHwAA</XPD:REF>
+<XPD:REF name="Views[4]">oL1qXGO9Z0qIfK0TRNGtIQAA</XPD:REF>
+<XPD:REF name="Views[5]">Xm2eEKpyiUStX1+uCI11FAAA</XPD:REF>
+<XPD:REF name="Views[6]">wGEnx29RXU6bz3Uz5hAIVAAA</XPD:REF>
+<XPD:REF name="Views[7]">UJmtkMbqp0abBpVuUpaZAQAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="OwnedElements[23]" type="UMLClass" guid="OCGpbavc90C25vLbmgVsVAAA">
 <XPD:ATTR name="Name" type="string">global</XPD:ATTR>
@@ -9345,7 +9343,7 @@ b.请求控制客户端
 <XPD:REF name="Views[3]">ALyQ3iC0CkyzNqUH38QQTQAA</XPD:REF>
 <XPD:ATTR name="#Operations" type="integer">4</XPD:ATTR>
 <XPD:OBJ name="Operations[0]" type="UMLOperation" guid="mhsJv7+msEm6LoDw5kFrtgAA">
-<XPD:ATTR name="Name" type="string">InitContraller</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">InitController</XPD:ATTR>
 <XPD:REF name="Owner">fOLdLGBzGk6AdfgsOC/bfgAA</XPD:REF>
 <XPD:ATTR name="#CallActions" type="integer">1</XPD:ATTR>
 <XPD:REF name="CallActions[0]">u6uvzfFIOUWvrfPmKQoq/QAA</XPD:REF>
@@ -10141,7 +10139,7 @@ b.请求控制客户端
 <XPD:OBJ name="NameLabel" type="EdgeLabelView" guid="g2R6XT86+0mIY5tM4+fOvQAA">
 <XPD:ATTR name="Alpha" type="real">1.5707963267949</XPD:ATTR>
 <XPD:ATTR name="Distance" type="real">10</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">17 : threadWatchData()()</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">17 : threadWatchData()</XPD:ATTR>
 <XPD:REF name="Model">7hvftwsSjUaIKU+6fXiSHAAA</XPD:REF>
 <XPD:REF name="HostEdge">af6NTs0NWESfzf0iDyWyOQAA</XPD:REF>
 </XPD:OBJ>
@@ -11195,7 +11193,7 @@ b.请求控制客户端
 <XPD:OBJ name="NameLabel" type="EdgeLabelView" guid="X3lNFvzb6E6xTJamm9bZLwAA">
 <XPD:ATTR name="Alpha" type="real">1.5707963267949</XPD:ATTR>
 <XPD:ATTR name="Distance" type="real">10</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">5 : InitContraller()</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">5 : InitController()</XPD:ATTR>
 <XPD:REF name="Model">+zzcpu3woEejo+veeoFp9AAA</XPD:REF>
 <XPD:REF name="HostEdge">AftRA5A6jkm63uM5lnHtZQAA</XPD:REF>
 </XPD:OBJ>
