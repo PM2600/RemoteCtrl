@@ -5,6 +5,7 @@
 #include "StatusDlg.h"
 #include <map>
 #include "Resource.h"
+#include "Tool.h"
 
 #define WM_SEND_PACK (WM_USER + 1)   // 发送包数据
 #define WM_SEND_DATA (WM_USER + 2)   // 发送数据
@@ -20,6 +21,39 @@ public:
 	int InitController();
 	int Invoke(CWnd*& pMainWnd);
 	LRESULT SendMessage(MSG msg);
+	void UpdateAddress(int nIP, int nPort) {
+		CClientSocket::getInstance()->UpdateAddress(nIP, nPort);
+	}
+	int DealCommand() {
+		return CClientSocket::getInstance()->DealCommand();
+	}
+	void CloseSocket() {
+		CClientSocket::getInstance()->CloseSocket();
+	}
+	bool SendPacket(const CPacket& pack) {
+		CClientSocket* pClient = CClientSocket::getInstance();
+		if (pClient->InitSocket() == false) {
+			return false;
+		}
+		pClient->Send(pack);
+	}
+	int SendCommandPacket(int nCmd, bool bAutoClose = true, BYTE* pData = NULL, size_t nLength = 0) {
+		CClientSocket* pClient = CClientSocket::getInstance();
+		if (pClient->InitSocket() == false) {
+			return false;
+		}
+		pClient->Send(CPacket(nCmd, pData, nLength));
+		int cmd = DealCommand();
+		TRACE("ack: %d\r\n", cmd);
+		if (bAutoClose)
+			CloseSocket();
+		return cmd;
+	}
+
+	int GetImage(CImage& image) {
+		CClientSocket* pClient = CClientSocket::getInstance();
+		return CTool::Byte2Image(image, pClient->GetPacket().strData);	
+	}
 
 protected:
 	CClientController():m_statusDlg(&m_remoteDlg), m_watchDlg(&m_remoteDlg){
