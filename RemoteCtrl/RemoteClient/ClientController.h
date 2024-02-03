@@ -37,6 +37,16 @@ public:
 		}
 		pClient->Send(pack);
 	}
+	// 1.查看磁盘分区
+	// 2.查看指定目录下的文件
+	// 3.打开文件
+	// 4.下载文件
+	// 5.鼠标操作
+	// 6.发送屏幕内容
+	// 7.锁机
+	// 8.解锁
+	// 9.删除文件
+	// 1981.测试
 	int SendCommandPacket(int nCmd, bool bAutoClose = true, BYTE* pData = NULL, size_t nLength = 0) {
 		CClientSocket* pClient = CClientSocket::getInstance();
 		if (pClient->InitSocket() == false) {
@@ -55,8 +65,31 @@ public:
 		return CTool::Byte2Image(image, pClient->GetPacket().strData);	
 	}
 
+	int DownFile(CString strPath) {
+		CFileDialog dlg(FALSE, NULL, strPath, OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, NULL, &m_remoteDlg);
+		if (dlg.DoModal() == IDOK) {
+			m_strRemote = strPath;
+			m_strLocal = dlg.GetPathName();		
+			// 开启子线程	
+			m_hThreadDownload = (HANDLE)_beginthread(&CClientController::threadDownloadEntry, 0, this);
+			if (WaitForSingleObject(m_hThreadDownload, 0) != WAIT_TIMEOUT) {
+				return -1;
+			}
+			m_remoteDlg.BeginWaitCursor();
+			m_statusDlg.m_info.SetWindowText(_T("命令正在执行中"));
+			m_statusDlg.ShowWindow(SW_SHOW);
+			m_statusDlg.CenterWindow(&m_remoteDlg);
+			m_statusDlg.SetActiveWindow();
+		}
+		return 0;
+	}
+
 protected:
+	void threadDownloadFile();
+	static void threadDownloadEntry(void* arg);
+
 	CClientController():m_statusDlg(&m_remoteDlg), m_watchDlg(&m_remoteDlg){
+		m_hThreadDownload = INVALID_HANDLE_VALUE;
 		m_hThread = INVALID_HANDLE_VALUE;
 		m_nThreadID = -1;
 	}
@@ -107,6 +140,9 @@ private:
 	CRemoteClientDlg m_remoteDlg;
 	CStatusDlg m_statusDlg;
 	HANDLE m_hThread;
+	HANDLE m_hThreadDownload;
+	CString m_strRemote;
+	CString m_strLocal;
 	unsigned m_nThreadID;
 
 	static CClientController* m_instance;
