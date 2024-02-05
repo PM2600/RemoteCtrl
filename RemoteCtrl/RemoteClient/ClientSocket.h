@@ -192,12 +192,13 @@ public:
 		while (true) {
 			size_t len = recv(m_sock, buffer + index, BUFFER_SIZE - index, 0);
 			TRACE("len=%d\r\n", len);
-			if (len <= 0 && index <= 0) {
+			if ((int)len <= 0 && (int)index <= 0) {
 				return -1;
 			}
 			index += len;
 			len = index; // ???
 			m_packet = CPacket((BYTE*)buffer, len);
+			TRACE("command %d\r\n", m_packet.sCmd);
 			if (len > 0) {
 				memmove(buffer, buffer + len, index - len);
 				index -= len;

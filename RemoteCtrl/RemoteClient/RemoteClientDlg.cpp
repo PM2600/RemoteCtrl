@@ -84,7 +84,6 @@ BEGIN_MESSAGE_MAP(CRemoteClientDlg, CDialogEx)
 	ON_COMMAND(ID_DOWNLOAD_FILE, &CRemoteClientDlg::OnDownloadFile)
 	ON_COMMAND(ID_DELETE_FILE, &CRemoteClientDlg::OnDeleteFile)
 	ON_COMMAND(ID_RUN_FILE, &CRemoteClientDlg::OnRunFile)
-	ON_MESSAGE(WM_SEND_PACKET, &CRemoteClientDlg::OnSendPacket)
 	ON_BN_CLICKED(IDC_BTN_START_WATCH, &CRemoteClientDlg::OnBnClickedBtnStartWatch)
 	ON_NOTIFY(IPN_FIELDCHANGED, IDC_IPADDRESS_SERV, &CRemoteClientDlg::OnIpnFieldchangedIpaddressServ)
 	ON_EN_CHANGE(IDC_EDIT_PORT, &CRemoteClientDlg::OnEnChangeEditPort)
@@ -134,7 +133,7 @@ BOOL CRemoteClientDlg::OnInitDialog()
 	UpdateData(FALSE);
 	m_dlgStatus.Create(IDD_DLG_STATUS, this);
 	m_dlgStatus.ShowWindow(SW_HIDE);
-	m_isFull = false;
+
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -222,41 +221,6 @@ void CRemoteClientDlg::OnBnClickedBtnFileinfo()
 		m_Tree.InsertItem(NULL, hTemp, TVI_LAST);
 	}
 }
-
-void CRemoteClientDlg::threadEntryForWatchData(void* arg)
-{
-	CRemoteClientDlg* thiz = (CRemoteClientDlg*)arg;
-	thiz->threadWatchData();
-	_endthread();
-}
-
-void CRemoteClientDlg::threadWatchData()
-{
-	Sleep(50);
-	CClientController* pCtrl = CClientController::getInstance();
-	while(!m_isClosed) {
-		if (m_isFull == false) {
-			int ret = pCtrl->SendCommandPacket(6);
-			if (ret == 6) {
-				{ // 更新数据到缓存
-					if(pCtrl->GetImage(m_image) == 0){
-						m_isFull = true;
-					}
-					else {
-						TRACE("获取图片失败\r\n");
-					}
-				}
-			}
-			else {
-				Sleep(1);
-			}
-		}
-		else {
-			Sleep(1);
-		}
-	}
-}
-
 
 void CRemoteClientDlg::LoadFileCurrent()
 {
@@ -426,43 +390,10 @@ void CRemoteClientDlg::OnRunFile()
 	}
 }
 
-LRESULT CRemoteClientDlg::OnSendPacket(WPARAM wParam, LPARAM lParam)
-{
-	int ret = 0;
-	int cmd = wParam >> 1;
-	CString strFile;
-	switch (cmd) {
-	case 4:
-		strFile = (LPCSTR)lParam;
-		ret = CClientController::getInstance()->SendCommandPacket(cmd, wParam & 1, (BYTE*)(LPCSTR)strFile, strFile.GetLength());
-		break;
-	case 5:
-		ret = CClientController::getInstance()->SendCommandPacket(cmd, wParam & 1, (BYTE*)lParam, sizeof(MOUSEEV));
-		break;
-	case 6:
-		ret = CClientController::getInstance()->SendCommandPacket(cmd, wParam & 1);
-		break;
-	case 7:
-		ret = CClientController::getInstance()->SendCommandPacket(cmd, wParam & 1);
-		break;
-	case 8:
-		ret = CClientController::getInstance()->SendCommandPacket(cmd, wParam & 1);
-		break;
-	default:
-		ret = -1;
-	}
-	return ret;
-}
-
 
 void CRemoteClientDlg::OnBnClickedBtnStartWatch()
 {
-	m_isClosed = false;
-	CWatchDialog dlg(this);
-	HANDLE hThread = (HANDLE)_beginthread(CRemoteClientDlg::threadEntryForWatchData, 0, this);
-	dlg.DoModal();
-	m_isClosed = true;
-	WaitForSingleObject(hThread, 500);
+	CClientController::getInstance()->StartWatchScreen();
 }
 
 
