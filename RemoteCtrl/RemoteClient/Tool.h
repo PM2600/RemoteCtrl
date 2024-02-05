@@ -20,7 +20,7 @@ public:
         OutputDebugStringA(strOut.c_str());
     }
 
-    static int Byte2Image(CImage& image, const std::string& strBuffer) {
+    static int Bytes2Image(CImage& image, const std::string& strBuffer) {
 		BYTE* pData = (BYTE*)strBuffer.c_str();
 		HGLOBAL hMem = GlobalAlloc(GMEM_MOVEABLE, 0);
 		if (hMem == NULL) {
