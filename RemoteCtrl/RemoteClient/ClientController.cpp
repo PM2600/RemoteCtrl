@@ -51,7 +51,7 @@ LRESULT CClientController::SendMessage(MSG msg)
 
 int CClientController::SendCommandPacket(int nCmd, bool bAutoClose, BYTE* pData, size_t nLength, std::list<CPacket>* plstPacks)
 {
-	TRACE("%s start %lld\r\n", __FUNCTION__, GetTickCount64());
+	//TRACE("%s start %lld\r\n", __FUNCTION__, GetTickCount64());
 	CClientSocket* pClient = CClientSocket::getInstance();
 	HANDLE hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
 	std::list<CPacket> lstPacks; // 应答结果包
@@ -60,12 +60,13 @@ int CClientController::SendCommandPacket(int nCmd, bool bAutoClose, BYTE* pData,
 	}
 
 	pClient->SendPacket(CPacket(nCmd, pData, nLength, hEvent), *plstPacks);
+	TRACE("plstPacks->size() = %d\r\n", plstPacks->size());
 	CloseHandle(hEvent); // 回收事件句柄
 	if (plstPacks->size() > 0) {
-		TRACE("%s start %lld\r\n", __FUNCTION__, GetTickCount64());
+		//TRACE("%s start %lld\r\n", __FUNCTION__, GetTickCount64());
 		return plstPacks->front().sCmd;
 	}
-	TRACE("%s start %lld\r\n", __FUNCTION__, GetTickCount64());
+	//TRACE("%s start %lld\r\n", __FUNCTION__, GetTickCount64());
 	return -1;
 }
 
@@ -107,6 +108,7 @@ void CClientController::threadWatchScreen()
 		if (m_watchDlg.isFull() == false) {
 			std::list<CPacket> lstPacks;
 			int ret = SendCommandPacket(6, true, NULL, 0, &lstPacks);
+			TRACE("ret = %d\r\n", ret);
 			if (ret == 6) {	
 				if ((CTool::Bytes2Image(m_watchDlg.GetImage(), lstPacks.front().strData)) == 0) {
 					m_watchDlg.SetImageStatus(true);

@@ -126,7 +126,6 @@ BOOL CRemoteClientDlg::OnInitDialog()
 	m_server_address = 0xC0A8588D; // 192.168.88.141
 	m_nPort = _T("9527");
 
-	UpdateData();
 	CClientController* pController = CClientController::getInstance();
 	pController->UpdateAddress(m_server_address, atoi((LPCTSTR)m_nPort));
 
