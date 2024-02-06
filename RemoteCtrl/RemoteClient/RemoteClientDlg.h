@@ -23,13 +23,7 @@ protected:
 
 public:
 
-	CImage& GetImage() {
-		return m_image;
-	}
-
 private:
-	CImage m_image; // 缓存
-
 	bool m_isClosed;
 
 private:

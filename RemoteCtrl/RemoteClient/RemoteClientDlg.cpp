@@ -242,7 +242,7 @@ void CRemoteClientDlg::LoadFileCurrent()
 			break;
 		pInfo = (PFILEINFO)CClientSocket::getInstance()->GetPacket().strData.c_str();
 	}
-	CClientController::getInstance()->CloseSocket();
+	//CClientController::getInstance()->CloseSocket();
 }
 
 void CRemoteClientDlg::LoadFileInfo()
@@ -289,7 +289,7 @@ void CRemoteClientDlg::LoadFileInfo()
 			break;
 		pInfo = (PFILEINFO)CClientSocket::getInstance()->GetPacket().strData.c_str();
 	}
-	CClientSocket::getInstance()->CloseSocket();
+	//CClientSocket::getInstance()->CloseSocket();
 	TRACE("count=%d\r\n", count);
 }
 
