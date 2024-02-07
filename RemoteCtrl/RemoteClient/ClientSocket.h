@@ -249,7 +249,7 @@ public:
 private:
 	bool m_bAutoClose;
 	std::list<CPacket> m_lstSend;
-	std::map<HANDLE, std::list<CPacket>> m_mapAck;
+	std::map<HANDLE, std::list<CPacket>&> m_mapAck;
 	std::map<HANDLE, bool> m_mapAutoClosed;
 	int m_nIP;
 	int m_nPort;

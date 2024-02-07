@@ -59,7 +59,7 @@ int CClientController::SendCommandPacket(int nCmd, bool bAutoClose, BYTE* pData,
 		plstPacks = &lstPacks;
 	}
 
-	pClient->SendPacket(CPacket(nCmd, pData, nLength, hEvent), *plstPacks);
+	pClient->SendPacket(CPacket(nCmd, pData, nLength, hEvent), *plstPacks, bAutoClose);
 	TRACE("plstPacks->size() = %d\r\n", plstPacks->size());
 	CloseHandle(hEvent); // 回收事件句柄
 	if (plstPacks->size() > 0) {
