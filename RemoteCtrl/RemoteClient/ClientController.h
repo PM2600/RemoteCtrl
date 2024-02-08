@@ -7,7 +7,6 @@
 #include "Resource.h"
 #include "Tool.h"
 
-
 #define WM_SHOW_STATUS (WM_USER + 3) // 展示状态
 #define WM_SHOW_WATCH (WM_USER + 4)  // 远程监控
 #define WM_SEND_MESSAGE (WM_USER + 0x1000)  // 自定义消息处理
