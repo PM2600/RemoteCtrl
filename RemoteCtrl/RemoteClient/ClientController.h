@@ -39,7 +39,7 @@ public:
 	// 8.½âËø
 	// 9.É¾³ıÎÄ¼ş
 	// 1981.²âÊÔ
-	int SendCommandPacket(int nCmd, bool bAutoClose = true, BYTE* pData = NULL, size_t nLength = 0, std::list<CPacket>* plstPacks = NULL);
+	bool SendCommandPacket(HWND hWnd, int nCmd, bool bAutoClose = true, BYTE* pData = NULL, size_t nLength = 0);
 	int GetImage(CImage& image) {
 		CClientSocket* pClient = CClientSocket::getInstance();
 		return CTool::Bytes2Image(image, pClient->GetPacket().strData);	
