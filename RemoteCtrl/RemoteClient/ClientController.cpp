@@ -53,10 +53,6 @@ bool CClientController::SendCommandPacket(HWND hWnd, int nCmd, bool bAutoClose, 
 {
 	CClientSocket* pClient = CClientSocket::getInstance();
 	bool ret = pClient->SendPacket(hWnd, CPacket(nCmd, pData, nLength), bAutoClose, wParam);
-	if (!ret) {
-		Sleep(30);
-		ret = pClient->SendPacket(hWnd, CPacket(nCmd, pData, nLength), bAutoClose, wParam);
-	}
 	return ret;
 }
 
