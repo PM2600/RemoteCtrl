@@ -69,10 +69,7 @@ int CClientController::DownFile(CString strPath)
 			return -1;
 		}
 		SendCommandPacket(m_remoteDlg, 4, false, (BYTE*)(LPCSTR)m_strRemote, m_strRemote.GetLength(), (WPARAM)pFile);
-		//m_hThreadDownload = (HANDLE)_beginthread(&CClientController::threadDownloadEntry, 0, this);
-		//if (WaitForSingleObject(m_hThreadDownload, 0) != WAIT_TIMEOUT) {
-		//	return -1;
-		//}
+
 		m_remoteDlg.BeginWaitCursor();
 		m_statusDlg.m_info.SetWindowText(_T("命令正在执行中"));
 		m_statusDlg.ShowWindow(SW_SHOW);
