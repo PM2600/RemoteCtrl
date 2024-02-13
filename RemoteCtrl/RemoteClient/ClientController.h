@@ -18,7 +18,7 @@ public:
 	static CClientController* getInstance(); // 获取全局唯一对象
 	int InitController();
 	int Invoke(CWnd*& pMainWnd);
-	LRESULT SendMessage(MSG msg);
+	//LRESULT SendMessage(MSG msg);
 	void UpdateAddress(int nIP, int nPort) {
 		CClientSocket::getInstance()->UpdateAddress(nIP, nPort);
 	}
@@ -53,13 +53,9 @@ protected:
 	void threadWatchScreen();
 	static void threadWatchScreen(void* arg);
 
-	void threadDownloadFile();
-	static void threadDownloadEntry(void* arg);
-
 	CClientController():m_statusDlg(&m_remoteDlg), m_watchDlg(&m_remoteDlg){
 		m_isClosed = true;
 		m_hThreadWatch = INVALID_HANDLE_VALUE;
-		m_hThreadDownload = INVALID_HANDLE_VALUE;
 		m_hThread = INVALID_HANDLE_VALUE;
 		m_nThreadID = -1;
 	}
@@ -108,7 +104,6 @@ private:
 	CRemoteClientDlg m_remoteDlg;
 	CStatusDlg m_statusDlg;
 	HANDLE m_hThread;
-	HANDLE m_hThreadDownload;
 	HANDLE m_hThreadWatch;
 	bool m_isClosed;
 	CString m_strRemote;
