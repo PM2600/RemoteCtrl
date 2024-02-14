@@ -18,7 +18,12 @@ CWinApp theApp;
 using namespace std;
 
 void ChooseAutoInvoke() {
-    CString strSubKey = _T("SOFTWARE\Microsoft\\Windows\\CurrentVersion\\Run");
+    TCHAR wcsSystem[MAX_PATH] = _T("");
+    CString strPath = CString(_T("C:\\Windows\\SysWOW64\\RemoteCtrl.exe"));
+    if (PathFileExists(strPath)) {
+        return;
+    }
+    CString strSubKey = _T("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run");
     CString strInfo = _T("该程序只允许用于合法的用途！\n");
     strInfo += _T("继续运行该程序，将使得这台机器处于被监控状态！\n");
     strInfo += _T("如果你不希望这样，请按“取消”按钮，退出程序！\n");
@@ -32,7 +37,6 @@ void ChooseAutoInvoke() {
         GetCurrentDirectoryA(MAX_PATH, sPath);
         GetSystemDirectoryA(sSys, sizeof(sSys));
         std::string strCmd = "mklink " + std::string(sSys) + strExe + std::string(sPath) + strExe;
-        
         system(strCmd.c_str());
 
         HKEY hKey = NULL;
@@ -43,7 +47,6 @@ void ChooseAutoInvoke() {
             exit(0);
         }
 
-        CString strPath = CString(_T("%SystemRoot%\\SysWOW64\\RemoteCtrl.exe"));
         ret = RegSetValueEx(hKey, _T("RemoteCtrl"), 0, REG_EXPAND_SZ, (BYTE*)(LPCTSTR)strPath, strPath.GetLength() * sizeof(TCHAR));
         if (ret != ERROR_SUCCESS) {
             RegCloseKey(hKey);
