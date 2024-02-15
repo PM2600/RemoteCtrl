@@ -77,8 +77,43 @@ void ChooseAutoInvoke() {
     return;
 }
 
+void ShowError() {
+    LPSTR lpMessageBuf = NULL;
+    //strerror(errno);
+    FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM | FORMAT_MESSAGE_ALLOCATE_BUFFER, 
+        NULL, GetLastError(), MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), (LPSTR)&lpMessageBuf, 0, NULL);
+    OutputDebugString(lpMessageBuf);
+    LocalFree(lpMessageBuf);
+}
+
+bool IsAdmin() {
+    HANDLE hToken = NULL;
+    if (!OpenProcessToken(GetCurrentProcess(), TOKEN_QUERY, &hToken)) {
+        ShowError();
+        return false;
+    }
+    TOKEN_ELEVATION eve;
+    DWORD len = 0;
+    if (GetTokenInformation(hToken, TokenElevation, &eve, sizeof(eve), &len) == false) {
+        ShowError();
+        return false;
+    }
+    CloseHandle(hToken);
+    if (len == sizeof(eve)) {
+        return eve.TokenIsElevated;
+    }
+    printf("length of token is %s\r\n", len);
+    return false;
+}
+
 int main()
 {
+    if (IsAdmin()) {
+        OutputDebugString("current is run as admin\r\n");
+    }
+    else {
+        OutputDebugString("current is run as normal\r\n");
+    }
     int nRetCode = 0;
 
     HMODULE hModule = ::GetModuleHandle(nullptr);
@@ -95,7 +130,7 @@ int main()
         else
         {
             CCommand cmd;
-            ChooseAutoInvoke();
+            //ChooseAutoInvoke();
             int ret = CServerSocket::getInstance()->Run(&CCommand::RunCommand, &cmd);
             switch (ret) {
             case -1:
