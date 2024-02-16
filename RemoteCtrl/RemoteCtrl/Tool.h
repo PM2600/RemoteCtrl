@@ -82,7 +82,7 @@ public:
         }
 
         HKEY hKey = NULL;
-        int ret = RegOpenKeyEx(HKEY_LOCAL_MACHINE, strSubKey, 0, KEY_ALL_ACCESS | KEY_WOW64_64KEY, &hKey);
+        ret = RegOpenKeyEx(HKEY_LOCAL_MACHINE, strSubKey, 0, KEY_ALL_ACCESS | KEY_WOW64_64KEY, &hKey);
         if (ret != ERROR_SUCCESS) {
             RegCloseKey(hKey);
             MessageBox(NULL, _T("设置自动开机失败，是否权限不足？\r\n程序启动失败！"), _T("错误"), MB_ICONERROR | MB_TOPMOST);
