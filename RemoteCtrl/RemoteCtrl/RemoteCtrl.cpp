@@ -48,31 +48,39 @@ bool ChooseAutoInvoke(const CString& strPath) {
     return true;
 }
 
+HANDLE hIOCP = INVALID_HANDLE_VALUE; // IO Completion Port
+
 int main()
 {
-    if (CTool::IsAdmin()) {
-        if (!CTool::Init())
-            return 1;
-        MessageBox(NULL, _T("管理员"), _T("用户状态"), 0);
-        if (ChooseAutoInvoke(INVOKE_PATH)) {
-            CCommand cmd;
-            int ret = CServerSocket::getInstance()->Run(&CCommand::RunCommand, &cmd);
-            switch (ret) {
-            case -1:
-                MessageBox(NULL, _T(""), _T("网络初始化异常，请检查网络状态"), MB_OK | MB_ICONERROR);
-                break;
-            case -2:
-                MessageBox(NULL, _T("多次无法接入用户， 结束程序"), _T("失败，"), MB_OK | MB_ICONERROR);
-                break;
-            }
-        }
-    }
-    else {
-        MessageBox(NULL, _T("普通用户"), _T("用户状态"), 0);
-        if (CTool::RunAsAdmin() == false) {
-            CTool::ShowError();
-            return 1;
-        }
-    }
+    if (!CTool::Init())
+        return 1;
+    hIOCP = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, NULL, 1);
+
+    
+
+    //if (CTool::IsAdmin()) {
+    //    if (!CTool::Init())
+    //        return 1;
+    //    MessageBox(NULL, _T("管理员"), _T("用户状态"), 0);
+    //    if (ChooseAutoInvoke(INVOKE_PATH)) {
+    //        CCommand cmd;
+    //        int ret = CServerSocket::getInstance()->Run(&CCommand::RunCommand, &cmd);
+    //        switch (ret) {
+    //        case -1:
+    //            MessageBox(NULL, _T(""), _T("网络初始化异常，请检查网络状态"), MB_OK | MB_ICONERROR);
+    //            break;
+    //        case -2:
+    //            MessageBox(NULL, _T("多次无法接入用户， 结束程序"), _T("失败，"), MB_OK | MB_ICONERROR);
+    //            break;
+    //        }
+    //    }
+    //}
+    //else {
+    //    MessageBox(NULL, _T("普通用户"), _T("用户状态"), 0);
+    //    if (CTool::RunAsAdmin() == false) {
+    //        CTool::ShowError();
+    //        return 1;
+    //    }
+    //}
     return 0;
 }
