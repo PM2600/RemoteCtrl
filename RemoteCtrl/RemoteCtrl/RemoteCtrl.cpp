@@ -53,11 +53,6 @@ bool ChooseAutoInvoke(const CString& strPath) {
 #define IOCP_LIST_ADD 1
 #define IOCP_LIST_POP 2
 
-enum {
-    IocpListEmpty,
-    IocpListPush,
-    IocpListPop
-};
 
 typedef struct IocpParam {
     int nOperator;
@@ -73,11 +68,12 @@ typedef struct IocpParam {
     }
 }IOCP_PARAM;
 
-void threadQueueEntry(HANDLE hIOCP) {
+void threadmain(HANDLE hIOCP) {
     std::list<std::string> lstString;
     DWORD dwTransferred;
     ULONG_PTR CompletionKey;
     OVERLAPPED* pOverlapped;
+    int count = 0, count0 = 0;
     while (GetQueuedCompletionStatus(hIOCP, &dwTransferred, &CompletionKey, &pOverlapped, INFINITE)) {
         if (dwTransferred == 0 || CompletionKey == NULL) {
             printf("thread is prepare to exit\r\n");
@@ -86,22 +82,30 @@ void threadQueueEntry(HANDLE hIOCP) {
         IOCP_PARAM* pParam = (IOCP_PARAM*)CompletionKey;
         if (pParam->nOperator == IocpListPush) {
             lstString.push_back(pParam->strData);
+            count++;
         }
         else if (pParam->nOperator == IocpListPop) {
             std::string* pStr = NULL;
             if (lstString.size() > 0) {
                 pStr = new std::string(lstString.front());
-                lstString.pop_front();               
+                lstString.pop_front();
             }
             if (pParam->cbFunc) {
                 pParam->cbFunc(pStr);
             }
+            count0++;
         }
         else if (pParam->nOperator == IocpListEmpty) {
             lstString.clear();
         }
         delete pParam;
     }
+    printf("count = %d, count0 = %d\r\n", count, count0);
+
+}
+
+void threadQueueEntry(HANDLE hIOCP) {
+    threadmain(hIOCP);
     _endthread();
 }
 
@@ -120,19 +124,29 @@ int main()
 {
     if (!CTool::Init())
         return 1;
+
     printf("press any key to exit...\r\n");
     HANDLE hIOCP = INVALID_HANDLE_VALUE; // IO Completion Port
     hIOCP = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, NULL, 1);
+    if (hIOCP == INVALID_HANDLE_VALUE || hIOCP == NULL) {
+        printf("create iocp failed %d\r\n", GetLastError());
+        return 1;
+    }
     HANDLE hThread = (HANDLE)_beginthread(threadQueueEntry, 0, hIOCP);
     
     ULONGLONG tick = GetTickCount64();
-    while (_kbhit() != 0) {
-        if (GetTickCount64() - tick > 1300) {
-            PostQueuedCompletionStatus(hIOCP, sizeof(IOCP_PARAM), (ULONG_PTR)new IOCP_PARAM(IocpListPop, "hello world"), NULL);
+    ULONGLONG tick0 = GetTickCount64();
+    int count = 0, count0 = 0;
+    while (_kbhit() == 0) {
+        if (GetTickCount64() - tick0 > 1300) {
+            PostQueuedCompletionStatus(hIOCP, sizeof(IOCP_PARAM), (ULONG_PTR)new IOCP_PARAM(IocpListPop, "hello world", func), NULL);
+            tick0 = GetTickCount64();
+            count0++;
         }
         if (GetTickCount64() - tick > 2000) {         
             PostQueuedCompletionStatus(hIOCP, sizeof(IOCP_PARAM), (ULONG_PTR)new IOCP_PARAM(IocpListPush, "hello world"), NULL);
             tick = GetTickCount64();
+            count++;
         }
         Sleep(1);
     }
@@ -144,6 +158,7 @@ int main()
     CloseHandle(hIOCP);
 
     printf("exit done\r\n");
+    printf("count = %d, count0 = %d\r\n", count, count0);
     exit(0);
 
     //if (CTool::IsAdmin()) {
