@@ -94,4 +94,8 @@ void iocp()
         CTool::ShowError();
         return;
     }
+    sockaddr_in addr;
+    addr.sin_family = PF_INET;
+    addr.sin_addr.s_addr = inet_addr("0.0.0.0");
+    addr.sin_port = htons(9527);
 }
