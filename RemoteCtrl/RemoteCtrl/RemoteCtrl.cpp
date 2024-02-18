@@ -51,106 +51,14 @@ bool ChooseAutoInvoke(const CString& strPath) {
     return true;
 }
 
-#define IOCP_LIST_EMPTY 0
-#define IOCP_LIST_ADD 1
-#define IOCP_LIST_POP 2
-
-enum {
-    IocpListEmpty,
-    IocpListPush,
-    IocpListPop
-};
-
-typedef struct IocpParam {
-    int nOperator;
-    std::string strData;
-    _beginthread_proc_type cbFunc;
-    IocpParam(int op, const char* pData, _beginthread_proc_type cb = NULL) {
-        nOperator = op;
-        strData = pData;
-        cbFunc = cb;
-    }
-    IocpParam() {
-        nOperator = -1;
-    }
-}IOCP_PARAM;
-
-void threadmain(HANDLE hIOCP) {
-    std::list<std::string> lstString;
-    DWORD dwTransferred;
-    ULONG_PTR CompletionKey;
-    OVERLAPPED* pOverlapped;
-    int count = 0, count0 = 0;
-    while (GetQueuedCompletionStatus(hIOCP, &dwTransferred, &CompletionKey, &pOverlapped, INFINITE)) {
-        if (dwTransferred == 0 || CompletionKey == NULL) {
-            printf("thread is prepare to exit\r\n");
-            break;
-        }
-        IOCP_PARAM* pParam = (IOCP_PARAM*)CompletionKey;
-        if (pParam->nOperator == IocpListPush) {
-            lstString.push_back(pParam->strData);
-            count++;
-        }
-        else if (pParam->nOperator == IocpListPop) {
-            std::string str;
-            if (lstString.size() > 0) {
-                str = lstString.front();
-                lstString.pop_front();
-            }
-            if (pParam->cbFunc) {
-                pParam->cbFunc(&str);
-            }
-            count0++;
-        }
-        else if (pParam->nOperator == IocpListEmpty) {
-            lstString.clear();
-        }
-        delete pParam;
-    }
-    printf("count = %d, count0 = %d\r\n", count, count0);
-}
-
-void threadQueueEntry(HANDLE hIOCP) {
-    threadmain(hIOCP);
-    _endthread();
-}
-
-void func(void* arg) {
-    std::string* pstr = (std::string*)arg;
-    if (pstr != NULL) {
-        printf("pop from list: %d\r\n", pstr->c_str());
-        delete pstr;
-    }
-    else {
-        printf("list is empty\r\n");
-    }
-}
+void iocp();
 
 int main()
 {
     if (!CTool::Init())
         return 1;
-    CQueue<std::string> lstStrings;
-    ULONGLONG tick = GetTickCount64(), tick0 = GetTickCount64();
-    printf("press any key to exit...\r\n");
-    while (_kbhit() == 0) {
-        if (GetTickCount64() - tick0 > 1300) {
-            lstStrings.PushBack("hello world");
-            tick0 = GetTickCount64();
-        }
-        if (GetTickCount64() - tick > 2000) { 
-            std::string str;
-            lstStrings.PopFront(str);
-            tick = GetTickCount64();
-            printf("pop from queue: %s\r\n", str.c_str());
-        }
-        Sleep(1);
-    }
-    printf("exit done, size = %d\r\n", lstStrings.Size());
-    lstStrings.Clear();
-    printf("size = %d\r\n", lstStrings.Size());
-    exit(0);
 
+    iocp();
     //if (CTool::IsAdmin()) {
     //    if (!CTool::Init())
     //        return 1;
@@ -176,4 +84,14 @@ int main()
     //    }
     //}
     return 0;
+}
+
+void iocp()
+{
+    //SOCKET sock = socket(AF_INET, SOCK_STREAM, 0);
+    SOCKET sock = WSASocket(AF_INET, SOCK_STREAM, 0, NULL, 0, WSA_FLAG_OVERLAPPED);
+    if (sock == INVALID_SOCKET) {
+        CTool::ShowError();
+        return;
+    }
 }

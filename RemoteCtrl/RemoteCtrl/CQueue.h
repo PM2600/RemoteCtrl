@@ -36,18 +36,20 @@ public:
 		m_hCompletionPort = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, NULL, 1);
 		m_hThread = INVALID_HANDLE_VALUE;
 		if (m_hCompletionPort != NULL) {
-			m_hThread = (HANDLE)_beginthread(&CQueue<T>::threadEntry, 0, m_hCompletionPort);
+			m_hThread = (HANDLE)_beginthread(&CQueue<T>::threadEntry, 0, this);
 		}
 	};
 	~CQueue() {
 		if (m_lock)
 			return;
 		m_lock = true;
-		HANDLE hTemp = m_hCompletionPort;
 		PostQueuedCompletionStatus(m_hCompletionPort, 0, NULL, NULL);
 		WaitForSingleObject(m_hThread, INFINITE);
-		m_hCompletionPort = NULL;
-		CloseHandle(hTemp);
+		if (m_hCompletionPort != NULL) {
+			HANDLE hTemp = m_hCompletionPort;
+			m_hCompletionPort = NULL;
+			CloseHandle(hTemp);
+		}
 	};
 	bool PushBack(const T& data) {
 		IocpParam* pParam = new IocpParam(EQPush, data);
@@ -118,6 +120,7 @@ private:
 		thiz->threadMain();
 		_endthread();
 	};
+
 	void DealParam(PPARAM* pParam) {
 		switch (pParam->nOperator) {
 		case EQPush:
@@ -169,7 +172,10 @@ private:
 			pParam = (PPARAM*)CompletionKey;
 			DealParam(pParam);
 		}
-		CloseHandle(m_hCompletionPort);
+		HANDLE hTemp = m_hCompletionPort;
+		m_hCompletionPort = NULL;
+		CloseHandle(hTemp);
+
 	};
 private:
 	std::list<T> m_lstData;
