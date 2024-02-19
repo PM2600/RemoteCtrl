@@ -101,7 +101,7 @@ public:
 void iocp()
 {
     //SOCKET sock = socket(AF_INET, SOCK_STREAM, 0);
-    SOCKET sock = WSASocket(AF_INET, SOCK_STREAM, 0, NULL, 0, WSA_FLAG_OVERLAPPED);
+    SOCKET sock = WSASocket(PF_INET, SOCK_STREAM, 0, NULL, 0, WSA_FLAG_OVERLAPPED);
     if (sock == INVALID_SOCKET) {
         CTool::ShowError();
         return;
