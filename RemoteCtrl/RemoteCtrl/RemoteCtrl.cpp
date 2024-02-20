@@ -9,6 +9,7 @@
 #include <conio.h>
 #include "CQueue.h"
 #include <MSWSock.h>
+#include "EdyServer.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -100,46 +101,8 @@ public:
 
 void iocp()
 {
-    //SOCKET sock = socket(AF_INET, SOCK_STREAM, 0);
-    SOCKET sock = WSASocket(PF_INET, SOCK_STREAM, 0, NULL, 0, WSA_FLAG_OVERLAPPED);
-    if (sock == INVALID_SOCKET) {
-        CTool::ShowError();
-        return;
-    }
-    HANDLE hIOCP = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, sock, 4);
-    SOCKET client = WSASocket(AF_INET, SOCK_STREAM, 0, NULL, 0, WSA_FLAG_OVERLAPPED);
-    CreateIoCompletionPort((HANDLE)sock, hIOCP, 0, 0);
-    sockaddr_in addr;
-    addr.sin_family = PF_INET;
-    addr.sin_addr.s_addr = inet_addr("0.0.0.0");
-    addr.sin_port = htons(9527);
-
-    bind(sock, (sockaddr*)&addr, sizeof(addr));
-    listen(sock, 5);
-
-    COverlapped overlapped;
-    overlapped.m_operator = 1;
-    memset(&overlapped, 0, sizeof(overlapped));
-    DWORD received = 0;
-    if (AcceptEx(sock, client, overlapped.m_buffer, 0, sizeof(sockaddr_in) + 16, sizeof(sockaddr_in) + 16, &received, &overlapped.m_overlapped) == FALSE) {
-        CTool::ShowError();
-    }
-    overlapped.m_operator = 2;
-    WSASend();
-    overlapped.m_operator = 3;
-    WSARecv();
-    while (true) {
-        LPOVERLAPPED pOverlapped = NULL;
-        DWORD transferred = 0;
-        DWORD key = 0;
-        if (GetQueuedCompletionStatus(hIOCP, &transferred, &key, &pOverlapped, INFINITY)) {
-            COverlapped* pO = CONTAINING_RECORD(pOverlapped, COverlapped, m_overlapped);
-            switch (pO->m_operator) {
-            case 1:
-
-                break;
-            }
-        }
-    }
+    EdyServer server;
+    server.StartService();
+    getchar();
 }
  
