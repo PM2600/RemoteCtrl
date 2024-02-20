@@ -1,10 +1,10 @@
 #pragma once
 #include "EdyThread.h"
+#include "CQueue.h"
 #include <map>
+#include <MSWSock.h>
 
-class EdyClient {
 
-};
 
 enum EdyOperator{
 	ENone,
@@ -14,13 +14,15 @@ enum EdyOperator{
 	EError
 };
 
+class EdyServer;
+
 class EdyOverlapped {
 public:
 	OVERLAPPED m_overlapped;
 	DWORD m_operator;
 	std::vector<char> m_buffer;
 	ThreadWorker m_worker; // ´¦Àíº¯Êý
-
+	EdyServer* m_server;
 };
 
 template<EdyOperator>
@@ -29,9 +31,13 @@ public:
 	AcceptOverlapped() :m_operator(EAccept), m_worker(this, &AcceptOverlapped::AcceptWorker) {
 		memset(&m_overlapped, 0, sizeof(m_overlapped));
 		m_buffer.resize(1024);
+		m_server = NULL;
 	}
 	int AcceptWorker() {
-		//TODO
+		if (m_server) {
+			return m_server->AcceptClient();
+		}
+		return -1;
 	}
 };
 typedef AcceptOverlapped<EAccept> ACCEPTOVERLAPPED;
@@ -78,6 +84,36 @@ public:
 };
 typedef ErrorOverlapped<EError> ERROROVERLAPPED;
 
+class EdyClient {
+public:
+	EdyClient() :m_isbusy(false) {
+		m_sock = WSASocket(PF_INET, SOCK_STREAM, 0, NULL, 0, WSA_FLAG_OVERLAPPED);
+		m_buffer.resize(1024);
+		memset(&m_addr, 0, sizeof(m_addr));
+	}
+	~EdyClient() {
+		closesocket(m_sock);
+	}
+
+	operator SOCKET() {
+		return m_sock;
+	}
+	operator PVOID() {
+		return &m_buffer[0];
+	}
+	operator LPOVERLAPPED() {
+		return &m_overlapped.m_overlapped;
+	}
+private:
+	SOCKET m_sock;
+	DWORD m_received;
+	ACCEPTOVERLAPPED m_overlapped;
+	std::vector<char> m_buffer;
+	sockaddr_in m_addr;
+	bool m_isbusy;
+};
+
+typedef std::shared_ptr<EdyClient> PCLIENT;
 
 class EdyServer : public ThreadFuncBase
 {
@@ -110,11 +146,18 @@ public:
 			m_hIOCP = INVALID_HANDLE_VALUE;
 			return;
 		}
+
 		CreateIoCompletionPort((HANDLE)m_sock, m_hIOCP, (ULONG_PTR)this, 0);
 		m_pool.DispatchWorker(ThreadWorker(this, (FUNCTYPE)&EdyServer::threadIocp));
-
+		PCLIENT pClient(new EdyClient());
+		m_client.insert(std::pair <SOCKET, PCLIENT>(*pClient, pClient));		
+		AcceptEx(m_sock, *pClient, *pClient, 0, sizeof(sockaddr_in) + 16, sizeof(sockaddr_in) + 16, );
 	}
 	~EdyServer(){}
+
+	int AcceptClient() {
+
+	}
 private:
 	int threadIocp() {
 		DWORD tranferred = 0;
@@ -152,6 +195,6 @@ private:
 	EdyThreadPool m_pool;
 	HANDLE m_hIOCP;
 	SOCKET m_sock;
-	std::map<SOCKET, std::shared_ptr<EdyClient*>> m_client;
+	std::map<SOCKET, std::shared_ptr<EdyClient>> m_client;
 };
 
