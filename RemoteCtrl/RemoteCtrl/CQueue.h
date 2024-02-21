@@ -2,6 +2,7 @@
 #include "pch.h"
 #include <atomic>
 #include <list>
+#include "EdyThread.h"
 
 template<class T>
 class CQueue
@@ -39,7 +40,7 @@ public:
 			m_hThread = (HANDLE)_beginthread(&CQueue<T>::threadEntry, 0, this);
 		}
 	};
-	~CQueue() {
+	virtual ~CQueue() {
 		if (m_lock)
 			return;
 		m_lock = true;
@@ -64,7 +65,7 @@ public:
 		return ret;
 	}
 
-	bool PopFront(T& data) {
+	virtual bool PopFront(T& data) {
 		HANDLE hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
 		IocpParam Param(EQPop, data, hEvent);
 		if (m_lock) {
@@ -114,14 +115,14 @@ public:
 		}
 		return ret;
 	};
-private:
+protected:
 	static void threadEntry(void* arg) {
 		CQueue<T>* thiz = (CQueue<T>*)arg;
 		thiz->threadMain();
 		_endthread();
 	};
 
-	void DealParam(PPARAM* pParam) {
+	virtual void DealParam(PPARAM* pParam) {
 		switch (pParam->nOperator) {
 		case EQPush:
 			m_lstData.push_back(pParam->Data);
@@ -151,7 +152,7 @@ private:
 			break;
 		}
 	}
-	void threadMain() {
+	virtual void threadMain() {
 		PPARAM* pParam = NULL;
 		ULONG_PTR CompletionKey = 0;
 		OVERLAPPED* pOverlapped = NULL;
@@ -175,11 +176,94 @@ private:
 		HANDLE hTemp = m_hCompletionPort;
 		m_hCompletionPort = NULL;
 		CloseHandle(hTemp);
-
 	};
-private:
+protected:
 	std::list<T> m_lstData;
 	HANDLE m_hCompletionPort;
 	HANDLE m_hThread;
 	std::atomic<bool> m_lock; // 队列正在析构
 };
+
+
+template<class T>
+class EdySendQueue : public CQueue<T> , public ThreadFuncBase{
+public:
+	typedef int (ThreadFuncBase::*EDYCALLBACK)(T& data);
+
+	EdySendQueue(ThreadFuncBase* obj, EDYCALLBACK callback) :
+		CQueue<T>(), m_base(obj), m_callback(callback) 
+	{
+		m_thread.Start();
+		m_thread.UpdateWorker(::ThreadWorker(this, (FUNCTYPE)&EdySendQueue<T>::threadTick));
+	}
+	virtual ~EdySendQueue() {
+		m_base = NULL;
+		m_callback = NULL;
+		m_thread.Stop();
+	}
+
+protected:
+	virtual bool PopFront(T& data) {
+		return false;
+	}
+	
+	bool PopFront(){
+		typename CQueue<T>::IocpParam* Param = new typename CQueue<T>::IocpParam(CQueue<T>::EQPop, T());
+		if (CQueue<T>::m_lock) {
+			delete Param;
+			return false;
+		}
+		bool ret = PostQueuedCompletionStatus(CQueue<T>::m_hCompletionPort, sizeof(*Param), (ULONG_PTR)&Param, NULL);
+		if (ret == false) {
+			delete Param;
+			return false;
+		}
+		return ret;
+	};
+
+	int threadTick() {
+		if (WaitForSingleObject(CQueue<T>::m_hThread, 0) != WAIT_TIMEOUT)
+			return 0;
+		if (CQueue<T>::m_lstData.size() > 0){
+			PopFront();
+		}
+		return 0;
+	}
+
+	virtual void DealParam(typename CQueue<T>::PPARAM* pParam) {
+		switch (pParam->nOperator) {
+		case CQueue<T>::EQPush:
+			CQueue<T>::m_lstData.push_back(pParam->Data);
+			delete pParam;
+			break;
+		case CQueue<T>::EQPop:
+			if (CQueue<T>::m_lstData.size() > 0) {
+				pParam->Data = CQueue<T>::m_lstData.front();
+				if ((m_base->*m_callback)(pParam->Data) == 0) {
+					CQueue<T>::m_lstData.pop_front();
+				}
+			}
+			delete pParam;
+			break;
+		case CQueue<T>::EQSize:
+			pParam->nOperator = CQueue<T>::m_lstData.size();
+			if (pParam->hEvent != NULL) {
+				SetEvent(pParam->hEvent);
+			}
+			break;
+		case CQueue<T>::EQClear:
+			CQueue<T>::m_lstData.clear();
+			delete pParam;
+			break;
+		default:
+			OutputDebugStringA("unknow operator\r\n");
+			break;
+		}
+	}
+private:
+	ThreadFuncBase* m_base;
+	EDYCALLBACK m_callback;
+	EdyThread m_thread;
+};
+
+typedef EdySendQueue<std::vector<char>>::EDYCALLBACK SENDCALLBACK;

@@ -24,8 +24,11 @@ public:
 	std::vector<char> m_buffer;
 	ThreadWorker m_worker; // 处理函数
 	EdyServer* m_server; // 服务器对象
-	PCLIENT m_client;	 //对应的客户端
+	EdyClient* m_client;	 //对应的客户端
 	WSABUF m_wsabuffer; 
+	virtual ~EdyOverlapped() {
+		m_buffer.clear();
+	}
 };
 
 template<EdyOperator>class AcceptOverlapped;
@@ -39,11 +42,16 @@ typedef SendOverlapped<ESend> SENDOVERLAPPED;
 
 
 
-class EdyClient {
+class EdyClient : public ThreadFuncBase{
 public:
 	EdyClient();
 	~EdyClient() {
+		m_buffer.clear();
 		closesocket(m_sock);
+		m_recv.reset();
+		m_send.reset();
+		m_overlapped.reset();
+		m_vecSend.Clear();
 	}
 	void SetOverlapped(PCLIENT& ptr);
 
@@ -75,15 +83,12 @@ public:
 	size_t GetBufferSize() const {
 		return m_buffer.size();
 	}
-	int Recv() {
-		int ret = recv(m_sock, m_buffer.data() + m_used, m_buffer.size() - m_used, 0);
-		if (ret <= 0)
-			return -1;
-		m_used += (size_t)ret;
-		//TODO 解析数据
-		return 0;
-	}
+	int Recv();
+
+	int Send(void* buffer, size_t nSize);
+	int SendData(std::vector<char>& data);
 private:
+
 	SOCKET m_sock;
 	DWORD m_received;
 	DWORD m_flags;
@@ -95,15 +100,14 @@ private:
 	sockaddr_in m_laddr; //本地地址
 	sockaddr_in m_raddr; //远程地址
 	bool m_isbusy;
+	EdySendQueue<std::vector<char>> m_vecSend; //发送数据队列
 };
 
 template<EdyOperator>
 class AcceptOverlapped :public EdyOverlapped, ThreadFuncBase {
 public:
 	AcceptOverlapped();
-	int AcceptWorker();
-	PCLIENT m_client;
-};
+	int AcceptWorker();};
 
 template<EdyOperator>
 class RecvOverlapped :public EdyOverlapped, ThreadFuncBase {
@@ -121,7 +125,7 @@ class SendOverlapped :public EdyOverlapped, ThreadFuncBase {
 public:
 	SendOverlapped();
 	int SendWorker() {
-		//TODO
+		
 		return -1;
 	}
 
@@ -153,7 +157,7 @@ public:
 		m_addr.sin_port = htonl(port);
 		m_addr.sin_addr.s_addr = inet_addr(ip.c_str());
 	}
-	~EdyServer(){}
+	~EdyServer();
 
 
 	bool StartService();
