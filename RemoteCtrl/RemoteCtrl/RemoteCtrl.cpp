@@ -105,7 +105,7 @@ int main(int argc, char* argv[])
     }
     clearsock();
 
-    //iocp();
+    iocp();
 
     //if (CTool::IsAdmin()) {
     //    if (!CTool::Init())

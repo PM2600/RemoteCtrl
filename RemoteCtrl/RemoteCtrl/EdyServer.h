@@ -23,8 +23,8 @@ public:
 	DWORD m_operator;
 	std::vector<char> m_buffer;
 	ThreadWorker m_worker; // 处理函数
-	EdyServer* m_server; // 服务器对象
-	EdyClient* m_client;	 //对应的客户端
+	EdyServer* m_server;   // 服务器对象
+	EdyClient* m_client;   //对应的客户端
 	WSABUF m_wsabuffer; 
 	virtual ~EdyOverlapped() {
 		m_buffer.clear();
