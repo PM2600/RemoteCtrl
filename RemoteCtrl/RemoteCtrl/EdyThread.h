@@ -60,7 +60,7 @@ public:
 		return m_bStatus;
 	}
 
-	bool IsValid() { // ·µ»Øtrue±íÊ¾ÓÐÐ§
+	bool IsValid() { // ï¿½ï¿½ï¿½ï¿½trueï¿½ï¿½Ê¾ï¿½ï¿½Ð§
 		if (m_hThread == NULL || m_hThread == INVALID_HANDLE_VALUE)
 			return false;
 		return WaitForSingleObject(m_hThread, 0) == WAIT_TIMEOUT;
@@ -84,7 +84,7 @@ public:
 			m_worker.store(NULL);
 			delete pWorker;
 		}
-		if (m_worker.load() != &worker)
+		if (m_worker.load() == &worker)
 			return;
 		if (!worker.IsValid()) {
 			m_worker.store(NULL);
@@ -93,7 +93,7 @@ public:
 		m_worker.store(new ::ThreadWorker(worker));
 	}
 
-	// true±íÊ¾¿ÕÏÐ£¬false±íÊ¾ÒÑ¾­·ÖÅäÁË¹¤×÷
+	// trueï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ð£ï¿½falseï¿½ï¿½Ê¾ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë¹ï¿½ï¿½ï¿½
 	bool IsIdle() { 
 		if (m_worker.load() == NULL) {
 			return true;
@@ -137,7 +137,7 @@ private:
 	}
 private:
 	HANDLE m_hThread;
-	bool m_bStatus; // false:±íÊ¾Ïß³Ì½«Òª¹Ø±Õ; true:Ïß³ÌÕýÔÚÖ´ÐÐ
+	bool m_bStatus; // false:ï¿½ï¿½Ê¾ï¿½ß³Ì½ï¿½Òªï¿½Ø±ï¿½; true:ï¿½ß³ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ï¿½
 	std::atomic<::ThreadWorker*> m_worker;
 };
 
@@ -182,7 +182,7 @@ public:
 		}
 	}
 
-	//·µ»Ø-1±íÊ¾·ÖÅäÊ§°Ü£¬ËùÓÐÏß³Ì¶¼ÔÚÃ¦£¬´óÓÚµÈÓÚ0±íÊ¾µÚn¸öÏß³Ì·ÖÅäÍê³É
+	//ï¿½ï¿½ï¿½ï¿½-1ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³Ì¶ï¿½ï¿½ï¿½Ã¦ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½ï¿½ï¿½0ï¿½ï¿½Ê¾ï¿½ï¿½nï¿½ï¿½ï¿½ß³Ì·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	int DispatchWorker(const ThreadWorker& worker) {
 		int index = -1;
 		m_lock.lock();
