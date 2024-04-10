@@ -206,7 +206,7 @@ public:
 			}
 			TRACE("recv %d\r\n", len);
 			index += len;
-			len = index; // ??? 
+			len = index;
 			m_packet = CPacket((BYTE*)buffer, len);
 			TRACE("len=%d\r\n", len);
 			if (len > 0) {
