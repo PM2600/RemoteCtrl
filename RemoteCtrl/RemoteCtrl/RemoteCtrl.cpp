@@ -37,7 +37,7 @@ void Dump(BYTE* pData, size_t nSize) {
 
 int MakeDiverInfo() {
     std::string result;
-    for (int i = 1; i <= 26; i++) {
+    for (int i = 1; i <= 26; i++) {  //1 = A, 2 = B
         if (_chdrive(i) == 0) {
             if (result.size() > 0) {
                 result += ',';
@@ -99,7 +99,7 @@ int MakeDirectoryInfo() {
 int RunFile() {
     std::string strPath;
     CServerSocket::getInstance()->GetFilePath(strPath);
-    ShellExecuteA(NULL, NULL, strPath.c_str(), NULL, NULL, SW_SHOWNORMAL);
+    ShellExecuteA(NULL, NULL, strPath.c_str(), NULL, NULL, SW_SHOWNORMAL); //运行一个外部程序
     CPacket pack(3, NULL, 0);
     CServerSocket::getInstance()->Send(pack);
     return 0;
@@ -127,7 +127,7 @@ int DownLoadFile() {
         char buffer[1024] = "";
         size_t rlen = 0;
         do {
-            rlen = fread(buffer, 1, 1024, pFile);
+            rlen = fread(buffer, 1, 1024, pFile);  //一次读取一个字节，读1024次
             CPacket pack(4, (BYTE*)buffer, rlen);
             CServerSocket::getInstance()->Send(pack);
         } while (rlen >= 1024);
@@ -144,7 +144,7 @@ int MouseEvent() {
         DWORD nFlags = 0;
         switch (mouse.nButton) {
         case 0: // 左键
-            nFlags = 1;
+            nFlags = 1;  // 0000 0001
             break;
         case 1: // 右键
             nFlags = 2;
@@ -162,7 +162,7 @@ int MouseEvent() {
 
         switch (mouse.nAction) {
         case 0: // 单击
-            nFlags |= 0x10;
+            nFlags |= 0x10; //0001 0000
             break;
         case 1: // 双击
             nFlags |= 0x20;
