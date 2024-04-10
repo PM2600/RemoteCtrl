@@ -213,7 +213,7 @@ void CRemoteClientDlg::OnBnClickedBtnFileinfo()
 	CClientSocket* pClient = CClientSocket::getInstance();
 	std::string drivers = pClient->GetPacket().strData;
 	std::string dr;
-	m_Tree.DeleteAllItems();
+	m_Tree.DeleteAllItems(); //清空控件m_Tree
 	for (size_t i = 0; i < drivers.size(); i++) {
 		if (drivers[i] == ',') {
 			dr += ':';
