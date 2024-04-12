@@ -74,8 +74,6 @@ protected:
 	LRESULT OnShowStatus(UINT nMsg, WPARAM wParam, LPARAM lParam);
 	LRESULT OnShowWatch(UINT nMsg, WPARAM wParam, LPARAM lParam);
 
-
-
 private:
 	typedef struct MsgInfo{
 		MSG msg;
