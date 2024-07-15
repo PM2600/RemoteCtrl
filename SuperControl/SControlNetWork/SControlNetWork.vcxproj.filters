@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Common.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="UDPPassNetWork.cpp" />
+    <ClCompile Include="Test.cpp" />
+    <ClCompile Include="MSocket.cpp">
+      <Filter>网络</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Test.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MThread.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="UDPPassNetWork.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MSocket.h">
+      <Filter>网络</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{689cb26c-bbc5-44d0-be3f-8534e53e23cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="网络">
+      <UniqueIdentifier>{c7498983-dbfd-42aa-ab06-8922bf4a2ed0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

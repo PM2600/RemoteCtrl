@@ -1,0 +1,9 @@
+﻿  正在验证源
+  正在将源远程复制到“192.168.88.149”
+  正在验证体系结构
+  正在验证体系结构
+D:\vs2019\Community\MSBuild\Microsoft\VC\v160\Application Type\Linux\1.0\Linux.targets(202,5): warning : 当前项目体系结构“ARM”不兼容远程系统体系结构“x64”(“x64”)。请在 Configuration Manager 中将项目体系结构切换为“x64”。如果正在交叉编译，可以忽略此警告。
+  正在启动远程生成
+  正在编译源:
+  正在链接对象
+  SControlNetWork.vcxproj -> D:\2.5\C++\SuperControl\SControlNetWork\bin\ARM\Debug\SControlNetWork.out

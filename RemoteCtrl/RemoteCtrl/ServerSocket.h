@@ -130,7 +130,6 @@ protected:
 		return send(m_client, pack.Data(), pack.Size(), 0) > 0;
 	}
 
-
 	void CloseClient() {
 		if (m_client != INVALID_SOCKET) {
 			closesocket(m_client);
@@ -197,4 +196,3 @@ private:
 };
 
 //extern CServerSocket server;
-

@@ -115,8 +115,6 @@ protected:
         return 0;
     }
 
-
-
     int MakeDirectoryInfo(std::list<CPacket>& lstPacket, CPacket& inPacket) {
         std::string strPath = inPacket.strData;
 

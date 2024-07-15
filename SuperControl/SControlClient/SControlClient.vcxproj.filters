@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SControlClient.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SControlClientDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="UserInfoDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="FileMangerDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientSocket.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="DownLoadFileDlg.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ScreenWatch.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MToolbar.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientController.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Request.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MThread.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="MQueue.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="UDPPassClient.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Tool.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SControlClient.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SControlClientDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="UserInfoDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="FileMangerDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Common.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientSocket.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="DownLoadFileDlg.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ScreenWatch.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MToolbar.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ClientController.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Request.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MThread.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="UDPPassClient.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Tool.cpp">
+      <Filter>头文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SControlClient.rc">
+      <Filter>资源文件</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\SControlClient.rc2">
+      <Filter>资源文件</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\SControlClient.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="D:\Desktop\tool_dir.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\toolbar1.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="D:\Desktop\tool_dir.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="D:\Desktop\tool_screen.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="D:\Desktop\t_dir.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="D:\Desktop\t_screen.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="D:\Desktop\window.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="D:\Desktop\MSG.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="D:\Desktop\add.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="D:\Desktop\del.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="D:\Desktop\mod.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="D:\Desktop\f_del.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="D:\Desktop\f_dow.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="D:\Desktop\f_mod.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="D:\Desktop\f_set.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="D:\Desktop\f_shw.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\toolbar2.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="D:\Desktop\f_fm.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\drive.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\file.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\t_dir.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\t_screen.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\window.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\MSG.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\add.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\del.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\mod.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\f_del.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\f_dow.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\f_mod.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\f_set.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\f_shw.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\f_fm.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\bmp00001.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\keyboard.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\lock.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\mouse.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\unlock.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="res\control.ico">
+      <Filter>资源文件</Filter>
+    </Image>
+  </ItemGroup>
+</Project>
